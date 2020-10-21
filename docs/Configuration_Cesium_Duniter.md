@@ -30,7 +30,7 @@ duniter sync gtest.duniter.org
 
 Pour démarrer le server Duniter avec des logs au terminal, faire
 
-```
+```terminal
 duniter direct_webrestart 
 ```
 
