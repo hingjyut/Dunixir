@@ -1,4 +1,4 @@
-* Ips:
+# Ips:
 - 10.29.244.130 ilsd-1
 - 10.29.244.195 ilsd-2
 - 10.29.244.76 ilsd-3
@@ -11,6 +11,6 @@
 - 10.29.244.152 ilsd-10
 - 10.29.244.159 ilsd-11
 
-* Identifiants
-*login*: dunixir
-*passphrase*: sequence:oxidizing:evidence
+# Identifiants
+- **login**: dunixir
+- **passphrase**: sequence:oxidizing:evidence
