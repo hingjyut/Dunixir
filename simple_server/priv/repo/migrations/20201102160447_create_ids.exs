@@ -7,5 +7,7 @@ defmodule Duniter.Repo.Migrations.CreateIds do
       add :pubkey, :string
       add :member, :boolean
     end
+    create unique_index(:identities, [:uid])
+    create unique_index(:identities, [:pubkey])
   end
 end

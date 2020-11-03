@@ -47,13 +47,21 @@ defmodule SimpleServer.Router do
 
     {:ok, body, conn} = read_body(conn)
     body = Poison.decode!(body)
-    id = %Identity{uid: body["uid"], pubkey: body["pubkey"], member: body["member"]}
-    Repo.insert(id)
-    DynamicSupervisor.start_child(Identity.DynamicSupervisor, %{id: body["pubkey"], start: {IDGenserver, :start, [body["pubkey"]]}})
+    changeset = Identity.changeset(%Identity{},%{uid: body["uid"], pubkey: body["pubkey"], member: body["member"]})
+    result = Repo.insert(changeset)
+    case result do
 
-    # We insert the Identity in the db and start the genserver that will its certifications.
+      {:error,changeset} -> send_resp(conn, 301, "failed creation: #{inspect changeset}")
 
-    send_resp(conn, 201, "created: #{inspect id}")
+      _ ->
+
+        DynamicSupervisor.start_child(Identity.DynamicSupervisor, %{id: body["pubkey"], start: {IDGenserver, :start, [body["pubkey"]]}})
+
+        # We insert the Identity in the db and start the genserver that will its certifications.
+
+        send_resp(conn, 201, "created: #{inspect changeset}")
+    end
+
 
   end
 
