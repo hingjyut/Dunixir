@@ -26,8 +26,11 @@ defmodule SimpleServer.Router do
   end
 
   get "/node/sandboxes" do
-    #IO.puts(Constants.version)
-    id_sbx_count = Duniter.Identity.ToProcess |> Repo.all |> Enum.count
+
+    id_sbx_count = Identity.ToProcess |> Repo.all |> Enum.count
+
+    # The sandbox of the identities is the identities not confirmed yet, represented in the view Identity.ToProcess
+
     json = Poison.encode!(
       %{transactions:
           %{size: Constants.sandboxTxSize, free: nil} ,
@@ -40,16 +43,16 @@ defmodule SimpleServer.Router do
     send_resp(conn, 200, json)
   end
 
-  # Basic example to handle POST requests wiht a JSON body
   post "/wot/add" do
 
     {:ok, body, conn} = read_body(conn)
     body = Poison.decode!(body)
     id = %Identity{uid: body["uid"], pubkey: body["pubkey"], member: body["member"]}
     Repo.insert(id)
-    {:ok,child} = DynamicSupervisor.start_child(Identity.DynamicSupervisor, %{id: body["pubkey"], start: {IDGenserver, :start, [body["pubkey"]]}})
+    DynamicSupervisor.start_child(Identity.DynamicSupervisor, %{id: body["pubkey"], start: {IDGenserver, :start, [body["pubkey"]]}})
 
-    #Duniter.Identity |> Duniter.Repo.all
+    # We insert the Identity in the db and start the genserver that will its certifications.
+
     send_resp(conn, 201, "created: #{inspect id}")
 
   end
@@ -58,11 +61,14 @@ defmodule SimpleServer.Router do
 
     {:ok, body, conn} = read_body(conn)
     body = Poison.decode!(body)
-    our_id = Repo.all(from i in Identity, where: i.pubkey == ^body["pubkey"], select: i.member)
-    case our_id do
-      [] -> send_resp(conn, 301, "error: ID does not exist")
-      [true] ->  send_resp(conn, 301, "error: ID is already a member")
-      _ ->
+    membership = Repo.all(from i in Identity, where: i.pubkey == ^body["pubkey"], select: i.member)
+    case membership do
+
+      [] -> send_resp(conn, 301, "error: ID does not exist") # If the query response is empty, the Identity doesn't exist
+
+      [true] ->  send_resp(conn, 301, "error: ID is already a member") # else if it is true, the Identity is already a member
+
+      _ -> # else we call the GenServer associated with the pubkey we certify and add a certification to its state.
         cert = %Certification{uid: body["uid"], pubkey: body["pubkey"], from_pubkey: body["from_pubkey"], written: body["written"]}
         Repo.insert(cert)
         {:ok, pid} = IDGenserver.start(body["pubkey"])

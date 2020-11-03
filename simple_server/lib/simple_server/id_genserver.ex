@@ -21,12 +21,14 @@ defmodule IDGenserver do
 
 
   def handle_call({:certify, %{"from_pubkey" => from_pubkey}, }, _from ,%{id_pubkey: id_pubkey, certifs: certifs})  do
+
+    # We count the certifications and change the membership state in the db and terminate if there is enough.
+
     count = [from_pubkey|certifs] |> Enum.count
     if count> @certifs_required do
       set_member(id_pubkey)
       {:stop,:normal,:ok, %{id_pubkey: id_pubkey, certifs: [from_pubkey | certifs]}}
     end
-    set_member(id_pubkey)
     IO.puts(count)
     IO.puts(inspect certifs)
     {:reply, :ok, %{id_pubkey: id_pubkey, certifs: [from_pubkey | certifs]}}
