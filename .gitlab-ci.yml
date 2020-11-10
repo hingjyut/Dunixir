@@ -1,0 +1,14 @@
+image: elixir:latest
+
+before_script:
+  - |
+    export HTTP_PROXY="http://172.17.0.1:3128"
+    export HTTPS_PROXY="http://172.17.0.1:3128"
+    cd simple_server/
+    mix local.rebar --force
+    mix local.hex --force
+    mix deps.get --only test
+
+mix:
+  script:
+    - mix test
