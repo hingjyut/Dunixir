@@ -1,6 +1,6 @@
 # Choix
 ### Elixir version
-Elixir 1.11.2 (compiled with Erlang/OTP 23)
+...Elixir 1.11.2 (compiled with Erlang/OTP 23)
 ### Choix des technos
 * Postgres : DB
 ### Choix des modules
@@ -9,12 +9,12 @@ Elixir 1.11.2 (compiled with Erlang/OTP 23)
 
 # Qualité
 ### Convention de nommage
-https://hexdocs.pm/elixir/naming-conventions.html
+...https://hexdocs.pm/elixir/naming-conventions.html
 
 ### Documentation
-https://elixirschool.com/fr/lessons/basics/documentation/
+...https://elixirschool.com/fr/lessons/basics/documentation/
 
 ### Tests
-https://elixirschool.com/en/lessons/basics/testing/
+...https://elixirschool.com/en/lessons/basics/testing/
 
 ### Métrique : a venirs
