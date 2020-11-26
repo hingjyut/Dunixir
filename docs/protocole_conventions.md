@@ -9,12 +9,12 @@
 
 # Qualité
 ### Convention de nommage
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://hexdocs.pm/elixir/naming-conventions.html
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://hexdocs.pm/elixir/naming-conventions.html
 
 ### Documentation
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://elixirschool.com/fr/lessons/basics/documentation/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://elixirschool.com/fr/lessons/basics/documentation/
 
 ### Tests
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://elixirschool.com/en/lessons/basics/testing/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://elixirschool.com/en/lessons/basics/testing/
 
-### Métrique : a venirs
+### Métrique : a venir
