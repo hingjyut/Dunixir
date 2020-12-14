@@ -1,0 +1,1200 @@
+.
+├── _build
+│   └── dev
+│       └── lib
+│           ├── blockchain_processor
+│           │   ├── consolidated
+│           │   │   ├── Elixir.Collectable.beam
+│           │   │   ├── Elixir.DBConnection.Query.beam
+│           │   │   ├── Elixir.Ecto.Queryable.beam
+│           │   │   ├── Elixir.Enumerable.beam
+│           │   │   ├── Elixir.IEx.Info.beam
+│           │   │   ├── Elixir.Inspect.beam
+│           │   │   ├── Elixir.List.Chars.beam
+│           │   │   ├── Elixir.Poison.Decoder.beam
+│           │   │   ├── Elixir.Poison.Encoder.beam
+│           │   │   └── Elixir.String.Chars.beam
+│           │   ├── ebin
+│           │   │   ├── blockchain_processor.app
+│           │   │   ├── Elixir.BlockchainProcessor.Application.beam
+│           │   │   ├── Elixir.BlockchainProcessor.beam
+│           │   │   ├── Elixir.DocumentProcessor.beam
+│           │   │   ├── Elixir.IIndex.beam
+│           │   │   └── Elixir.Repo.beam
+│           │   └── priv -> ../../../../priv
+│           ├── bunt
+│           │   └── ebin
+│           │       ├── bunt.app
+│           │       ├── Elixir.Bunt.ANSI.beam
+│           │       ├── Elixir.Bunt.ANSI.Sequence.beam
+│           │       └── Elixir.Bunt.beam
+│           ├── connection
+│           │   └── ebin
+│           │       ├── connection.app
+│           │       └── Elixir.Connection.beam
+│           ├── credo
+│           │   └── ebin
+│           │       ├── credo.app
+│           │       ├── Elixir.Credo.Application.beam
+│           │       ├── Elixir.Credo.beam
+│           │       ├── Elixir.Credo.Check.beam
+│           │       ├── Elixir.Credo.Check.ConfigComment.beam
+│           │       ├── Elixir.Credo.Check.ConfigCommentFinder.beam
+│           │       ├── Elixir.Credo.Check.Consistency.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.ExceptionNames.beam
+│           │       ├── Elixir.Credo.Check.Consistency.ExceptionNames.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.LineEndings.beam
+│           │       ├── Elixir.Credo.Check.Consistency.LineEndings.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.MultiAliasImportRequireUse.beam
+│           │       ├── Elixir.Credo.Check.Consistency.MultiAliasImportRequireUse.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.ParameterPatternMatching.beam
+│           │       ├── Elixir.Credo.Check.Consistency.ParameterPatternMatching.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.SpaceAroundOperators.beam
+│           │       ├── Elixir.Credo.Check.Consistency.SpaceAroundOperators.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.SpaceAroundOperators.SpaceHelper.beam
+│           │       ├── Elixir.Credo.Check.Consistency.SpaceInParentheses.beam
+│           │       ├── Elixir.Credo.Check.Consistency.SpaceInParentheses.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.TabsOrSpaces.beam
+│           │       ├── Elixir.Credo.Check.Consistency.TabsOrSpaces.Collector.beam
+│           │       ├── Elixir.Credo.Check.Consistency.UnusedVariableNames.beam
+│           │       ├── Elixir.Credo.Check.Consistency.UnusedVariableNames.Collector.beam
+│           │       ├── Elixir.Credo.Check.Design.AliasUsage.beam
+│           │       ├── Elixir.Credo.Check.Design.DuplicatedCode.beam
+│           │       ├── Elixir.Credo.Check.Design.TagFIXME.beam
+│           │       ├── Elixir.Credo.Check.Design.TagHelper.beam
+│           │       ├── Elixir.Credo.Check.Design.TagTODO.beam
+│           │       ├── Elixir.Credo.Check.Params.beam
+│           │       ├── Elixir.Credo.Check.Readability.AliasAs.beam
+│           │       ├── Elixir.Credo.Check.Readability.AliasOrder.beam
+│           │       ├── Elixir.Credo.Check.Readability.BlockPipe.beam
+│           │       ├── Elixir.Credo.Check.Readability.FunctionNames.beam
+│           │       ├── Elixir.Credo.Check.Readability.ImplTrue.beam
+│           │       ├── Elixir.Credo.Check.Readability.LargeNumbers.beam
+│           │       ├── Elixir.Credo.Check.Readability.MaxLineLength.beam
+│           │       ├── Elixir.Credo.Check.Readability.ModuleAttributeNames.beam
+│           │       ├── Elixir.Credo.Check.Readability.ModuleDoc.beam
+│           │       ├── Elixir.Credo.Check.Readability.ModuleNames.beam
+│           │       ├── Elixir.Credo.Check.Readability.MultiAlias.beam
+│           │       ├── Elixir.Credo.Check.Readability.ParenthesesInCondition.beam
+│           │       ├── Elixir.Credo.Check.Readability.ParenthesesOnZeroArityDefs.beam
+│           │       ├── Elixir.Credo.Check.Readability.PredicateFunctionNames.beam
+│           │       ├── Elixir.Credo.Check.Readability.PreferImplicitTry.beam
+│           │       ├── Elixir.Credo.Check.Readability.PreferUnquotedAtoms.beam
+│           │       ├── Elixir.Credo.Check.Readability.RedundantBlankLines.beam
+│           │       ├── Elixir.Credo.Check.Readability.Semicolons.beam
+│           │       ├── Elixir.Credo.Check.Readability.SeparateAliasRequire.beam
+│           │       ├── Elixir.Credo.Check.Readability.SinglePipe.beam
+│           │       ├── Elixir.Credo.Check.Readability.SpaceAfterCommas.beam
+│           │       ├── Elixir.Credo.Check.Readability.Specs.beam
+│           │       ├── Elixir.Credo.Check.Readability.StrictModuleLayout.beam
+│           │       ├── Elixir.Credo.Check.Readability.StringSigils.beam
+│           │       ├── Elixir.Credo.Check.Readability.TrailingBlankLine.beam
+│           │       ├── Elixir.Credo.Check.Readability.TrailingWhiteSpace.beam
+│           │       ├── Elixir.Credo.Check.Readability.UnnecessaryAliasExpansion.beam
+│           │       ├── Elixir.Credo.Check.Readability.VariableNames.beam
+│           │       ├── Elixir.Credo.Check.Readability.WithCustomTaggedTuple.beam
+│           │       ├── Elixir.Credo.Check.Refactor.ABCSize.beam
+│           │       ├── Elixir.Credo.Check.Refactor.AppendSingleItem.beam
+│           │       ├── Elixir.Credo.Check.Refactor.CaseTrivialMatches.beam
+│           │       ├── Elixir.Credo.Check.Refactor.CondStatements.beam
+│           │       ├── Elixir.Credo.Check.Refactor.CyclomaticComplexity.beam
+│           │       ├── Elixir.Credo.Check.Refactor.DoubleBooleanNegation.beam
+│           │       ├── Elixir.Credo.Check.Refactor.FunctionArity.beam
+│           │       ├── Elixir.Credo.Check.Refactor.LongQuoteBlocks.beam
+│           │       ├── Elixir.Credo.Check.Refactor.MapInto.beam
+│           │       ├── Elixir.Credo.Check.Refactor.MatchInCondition.beam
+│           │       ├── Elixir.Credo.Check.Refactor.ModuleDependencies.beam
+│           │       ├── Elixir.Credo.Check.Refactor.NegatedConditionsInUnless.beam
+│           │       ├── Elixir.Credo.Check.Refactor.NegatedConditionsWithElse.beam
+│           │       ├── Elixir.Credo.Check.Refactor.NegatedIsNil.beam
+│           │       ├── Elixir.Credo.Check.Refactor.Nesting.beam
+│           │       ├── Elixir.Credo.Check.Refactor.PerceivedComplexity.beam
+│           │       ├── Elixir.Credo.Check.Refactor.PipeChainStart.beam
+│           │       ├── Elixir.Credo.Check.Refactor.UnlessWithElse.beam
+│           │       ├── Elixir.Credo.Check.Refactor.VariableRebinding.beam
+│           │       ├── Elixir.Credo.Check.Refactor.WithClauses.beam
+│           │       ├── Elixir.Credo.Check.Runner.beam
+│           │       ├── Elixir.Credo.Check.Warning.ApplicationConfigInModuleAttribute.beam
+│           │       ├── Elixir.Credo.Check.Warning.BoolOperationOnSameValues.beam
+│           │       ├── Elixir.Credo.Check.Warning.ExpensiveEmptyEnumCheck.beam
+│           │       ├── Elixir.Credo.Check.Warning.IExPry.beam
+│           │       ├── Elixir.Credo.Check.Warning.IoInspect.beam
+│           │       ├── Elixir.Credo.Check.Warning.LazyLogging.beam
+│           │       ├── Elixir.Credo.Check.Warning.LeakyEnvironment.beam
+│           │       ├── Elixir.Credo.Check.Warning.MapGetUnsafePass.beam
+│           │       ├── Elixir.Credo.Check.Warning.MixEnv.beam
+│           │       ├── Elixir.Credo.Check.Warning.OperationOnSameValues.beam
+│           │       ├── Elixir.Credo.Check.Warning.OperationWithConstantResult.beam
+│           │       ├── Elixir.Credo.Check.Warning.RaiseInsideRescue.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnsafeExec.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnsafeToAtom.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedEnumOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedFileOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedFunctionReturnHelper.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedKeywordOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedListOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedPathOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedRegexOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedStringOperation.beam
+│           │       ├── Elixir.Credo.Check.Warning.UnusedTupleOperation.beam
+│           │       ├── Elixir.Credo.Check.Worker.beam
+│           │       ├── Elixir.Credo.Check.Worker.Server.beam
+│           │       ├── Elixir.Credo.CLI.beam
+│           │       ├── Elixir.Credo.CLI.Command.beam
+│           │       ├── Elixir.Credo.CLI.Command.Categories.CategoriesCommand.beam
+│           │       ├── Elixir.Credo.CLI.Command.Categories.CategoriesOutput.beam
+│           │       ├── Elixir.Credo.CLI.Command.Categories.Output.Default.beam
+│           │       ├── Elixir.Credo.CLI.Command.Categories.Output.Json.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffCommand.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffCommand.FilterIssues.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffCommand.GetGitDiff.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffCommand.PrintBeforeInfo.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffCommand.PrintResultsAndSummary.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffOutput.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.DiffSummary.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.Output.Default.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.Output.FlyCheck.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.Output.Json.beam
+│           │       ├── Elixir.Credo.CLI.Command.Diff.Output.Oneline.beam
+│           │       ├── Elixir.Credo.CLI.Command.Explain.ExplainCommand.beam
+│           │       ├── Elixir.Credo.CLI.Command.Explain.ExplainOutput.beam
+│           │       ├── Elixir.Credo.CLI.Command.Explain.Output.Default.beam
+│           │       ├── Elixir.Credo.CLI.Command.Explain.Output.Json.beam
+│           │       ├── Elixir.Credo.CLI.Command.GenCheck.beam
+│           │       ├── Elixir.Credo.CLI.Command.GenConfig.beam
+│           │       ├── Elixir.Credo.CLI.Command.Help.beam
+│           │       ├── Elixir.Credo.CLI.Command.Info.InfoCommand.beam
+│           │       ├── Elixir.Credo.CLI.Command.Info.InfoOutput.beam
+│           │       ├── Elixir.Credo.CLI.Command.Info.Output.Default.beam
+│           │       ├── Elixir.Credo.CLI.Command.Info.Output.Json.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.ListCommand.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.ListCommand.PrintBeforeInfo.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.ListCommand.PrintResultsAndSummary.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.ListOutput.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.Output.Default.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.Output.FlyCheck.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.Output.Json.beam
+│           │       ├── Elixir.Credo.CLI.Command.List.Output.Oneline.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.Output.Default.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.Output.FlyCheck.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.Output.Json.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.Output.Oneline.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.SuggestCommand.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.SuggestCommand.ManipulateConfigIfRerun.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.SuggestCommand.PrintBeforeInfo.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.SuggestCommand.PrintResultsAndSummary.beam
+│           │       ├── Elixir.Credo.CLI.Command.Suggest.SuggestOutput.beam
+│           │       ├── Elixir.Credo.CLI.Command.Version.beam
+│           │       ├── Elixir.Credo.CLI.Filename.beam
+│           │       ├── Elixir.Credo.CLI.Filter.beam
+│           │       ├── Elixir.Credo.CLI.Options.beam
+│           │       ├── Elixir.Credo.CLI.Output.beam
+│           │       ├── Elixir.Credo.CLI.Output.FormatDelegator.beam
+│           │       ├── Elixir.Credo.CLI.Output.Formatter.Flycheck.beam
+│           │       ├── Elixir.Credo.CLI.Output.Formatter.JSON.beam
+│           │       ├── Elixir.Credo.CLI.Output.Formatter.Oneline.beam
+│           │       ├── Elixir.Credo.CLI.Output.Shell.beam
+│           │       ├── Elixir.Credo.CLI.Output.Summary.beam
+│           │       ├── Elixir.Credo.CLI.Output.UI.beam
+│           │       ├── Elixir.Credo.CLI.Sorter.beam
+│           │       ├── Elixir.Credo.CLI.Task.LoadAndValidateSourceFiles.beam
+│           │       ├── Elixir.Credo.CLI.Task.PrepareChecksToRun.beam
+│           │       ├── Elixir.Credo.CLI.Task.RunChecks.beam
+│           │       ├── Elixir.Credo.CLI.Task.SetRelevantIssues.beam
+│           │       ├── Elixir.Credo.Code.beam
+│           │       ├── Elixir.Credo.Code.Block.beam
+│           │       ├── Elixir.Credo.Code.Charlists.beam
+│           │       ├── Elixir.Credo.Code.Heredocs.beam
+│           │       ├── Elixir.Credo.Code.InterpolationHelper.beam
+│           │       ├── Elixir.Credo.Code.Module.beam
+│           │       ├── Elixir.Credo.Code.Name.beam
+│           │       ├── Elixir.Credo.Code.Parameters.beam
+│           │       ├── Elixir.Credo.Code.ParserError.beam
+│           │       ├── Elixir.Credo.Code.Scope.beam
+│           │       ├── Elixir.Credo.Code.Sigils.beam
+│           │       ├── Elixir.Credo.Code.Strings.beam
+│           │       ├── Elixir.Credo.Code.TokenAstCorrelation.beam
+│           │       ├── Elixir.Credo.Code.Token.beam
+│           │       ├── Elixir.Credo.Code.Token.PositionHelper.beam
+│           │       ├── Elixir.Credo.ConfigBuilder.beam
+│           │       ├── Elixir.Credo.ConfigFile.beam
+│           │       ├── Elixir.Credo.Execution.beam
+│           │       ├── Elixir.Credo.Execution.ExecutionConfigFiles.beam
+│           │       ├── Elixir.Credo.Execution.ExecutionIssues.beam
+│           │       ├── Elixir.Credo.Execution.ExecutionSourceFiles.beam
+│           │       ├── Elixir.Credo.Execution.ExecutionTiming.beam
+│           │       ├── Elixir.Credo.Execution.Task.AppendDefaultConfig.beam
+│           │       ├── Elixir.Credo.Execution.Task.AssignExitStatusForIssues.beam
+│           │       ├── Elixir.Credo.Execution.Task.beam
+│           │       ├── Elixir.Credo.Execution.Task.ConvertCLIOptionsToConfig.beam
+│           │       ├── Elixir.Credo.Execution.Task.DetermineCommand.beam
+│           │       ├── Elixir.Credo.Execution.Task.InitializePlugins.beam
+│           │       ├── Elixir.Credo.Execution.Task.ParseOptions.beam
+│           │       ├── Elixir.Credo.Execution.Task.RequireRequires.beam
+│           │       ├── Elixir.Credo.Execution.Task.RunCommand.beam
+│           │       ├── Elixir.Credo.Execution.Task.SetDefaultCommand.beam
+│           │       ├── Elixir.Credo.Execution.Task.UseColors.beam
+│           │       ├── Elixir.Credo.Execution.Task.ValidateConfig.beam
+│           │       ├── Elixir.Credo.Execution.Task.ValidateOptions.beam
+│           │       ├── Elixir.Credo.Execution.Task.WriteDebugReport.beam
+│           │       ├── Elixir.Credo.ExsLoader.beam
+│           │       ├── Elixir.Credo.Issue.beam
+│           │       ├── Elixir.Credo.IssueMeta.beam
+│           │       ├── Elixir.Credo.Plugin.beam
+│           │       ├── Elixir.Credo.Priority.beam
+│           │       ├── Elixir.Credo.Service.ConfigFiles.beam
+│           │       ├── Elixir.Credo.Service.ETSTableHelper.beam
+│           │       ├── Elixir.Credo.Service.SourceFileAST.beam
+│           │       ├── Elixir.Credo.Service.SourceFileLines.beam
+│           │       ├── Elixir.Credo.Service.SourceFileScopes.beam
+│           │       ├── Elixir.Credo.Service.SourceFileSource.beam
+│           │       ├── Elixir.Credo.Severity.beam
+│           │       ├── Elixir.Credo.SourceFile.beam
+│           │       ├── Elixir.Credo.Sources.beam
+│           │       ├── Elixir.Credo.Test.Assertions.beam
+│           │       ├── Elixir.Credo.Test.Case.beam
+│           │       ├── Elixir.Credo.Test.CheckRunner.beam
+│           │       ├── Elixir.Credo.Test.SourceFiles.beam
+│           │       ├── Elixir.Credo.Watcher.beam
+│           │       ├── Elixir.Inspect.Credo.SourceFile.beam
+│           │       ├── Elixir.Mix.Tasks.Credo.beam
+│           │       ├── Elixir.Mix.Tasks.Credo.Gen.Check.beam
+│           │       └── Elixir.Mix.Tasks.Credo.Gen.Config.beam
+│           ├── db_connection
+│           │   └── ebin
+│           │       ├── db_connection.app
+│           │       ├── Elixir.DBConnection.App.beam
+│           │       ├── Elixir.DBConnection.Backoff.beam
+│           │       ├── Elixir.DBConnection.beam
+│           │       ├── Elixir.DBConnection.Connection.beam
+│           │       ├── Elixir.DBConnection.ConnectionError.beam
+│           │       ├── Elixir.DBConnection.ConnectionPool.beam
+│           │       ├── Elixir.DBConnection.ConnectionPool.Pool.beam
+│           │       ├── Elixir.DBConnection.EncodeError.beam
+│           │       ├── Elixir.DBConnection.Holder.beam
+│           │       ├── Elixir.DBConnection.LogEntry.beam
+│           │       ├── Elixir.DBConnection.Ownership.beam
+│           │       ├── Elixir.DBConnection.OwnershipError.beam
+│           │       ├── Elixir.DBConnection.Ownership.Manager.beam
+│           │       ├── Elixir.DBConnection.Ownership.Proxy.beam
+│           │       ├── Elixir.DBConnection.PrepareStream.beam
+│           │       ├── Elixir.DBConnection.Query.beam
+│           │       ├── Elixir.DBConnection.Stream.beam
+│           │       ├── Elixir.DBConnection.Task.beam
+│           │       ├── Elixir.DBConnection.TransactionError.beam
+│           │       ├── Elixir.DBConnection.Watcher.beam
+│           │       ├── Elixir.Enumerable.DBConnection.PrepareStream.beam
+│           │       └── Elixir.Enumerable.DBConnection.Stream.beam
+│           ├── decimal
+│           │   └── ebin
+│           │       ├── decimal.app
+│           │       ├── Elixir.Decimal.beam
+│           │       ├── Elixir.Decimal.Context.beam
+│           │       ├── Elixir.Decimal.Error.beam
+│           │       ├── Elixir.Decimal.Macros.beam
+│           │       ├── Elixir.Inspect.Decimal.beam
+│           │       └── Elixir.String.Chars.Decimal.beam
+│           ├── ecto
+│           │   └── ebin
+│           │       ├── ecto.app
+│           │       ├── Elixir.Ecto.Adapter.beam
+│           │       ├── Elixir.Ecto.Adapter.Queryable.beam
+│           │       ├── Elixir.Ecto.Adapter.Schema.beam
+│           │       ├── Elixir.Ecto.Adapter.Storage.beam
+│           │       ├── Elixir.Ecto.Adapter.Transaction.beam
+│           │       ├── Elixir.Ecto.Application.beam
+│           │       ├── Elixir.Ecto.Association.beam
+│           │       ├── Elixir.Ecto.Association.BelongsTo.beam
+│           │       ├── Elixir.Ecto.Association.Has.beam
+│           │       ├── Elixir.Ecto.Association.HasThrough.beam
+│           │       ├── Elixir.Ecto.Association.ManyToMany.beam
+│           │       ├── Elixir.Ecto.Association.NotLoaded.beam
+│           │       ├── Elixir.Ecto.beam
+│           │       ├── Elixir.Ecto.CastError.beam
+│           │       ├── Elixir.Ecto.ChangeError.beam
+│           │       ├── Elixir.Ecto.Changeset.beam
+│           │       ├── Elixir.Ecto.Changeset.Relation.beam
+│           │       ├── Elixir.Ecto.ConstraintError.beam
+│           │       ├── Elixir.Ecto.Embedded.beam
+│           │       ├── Elixir.Ecto.Enum.beam
+│           │       ├── Elixir.Ecto.InvalidChangesetError.beam
+│           │       ├── Elixir.Ecto.InvalidURLError.beam
+│           │       ├── Elixir.Ecto.MigrationError.beam
+│           │       ├── Elixir.Ecto.Multi.beam
+│           │       ├── Elixir.Ecto.MultiplePrimaryKeyError.beam
+│           │       ├── Elixir.Ecto.MultipleResultsError.beam
+│           │       ├── Elixir.Ecto.NoPrimaryKeyFieldError.beam
+│           │       ├── Elixir.Ecto.NoPrimaryKeyValueError.beam
+│           │       ├── Elixir.Ecto.NoResultsError.beam
+│           │       ├── Elixir.Ecto.ParameterizedType.beam
+│           │       ├── Elixir.Ecto.Queryable.Atom.beam
+│           │       ├── Elixir.Ecto.Queryable.beam
+│           │       ├── Elixir.Ecto.Queryable.BitString.beam
+│           │       ├── Elixir.Ecto.Queryable.Ecto.Query.beam
+│           │       ├── Elixir.Ecto.Queryable.Ecto.SubQuery.beam
+│           │       ├── Elixir.Ecto.Queryable.Tuple.beam
+│           │       ├── Elixir.Ecto.Query.API.beam
+│           │       ├── Elixir.Ecto.Query.beam
+│           │       ├── Elixir.Ecto.Query.BooleanExpr.beam
+│           │       ├── Elixir.Ecto.Query.Builder.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Combination.beam
+│           │       ├── Elixir.Ecto.Query.Builder.CTE.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Distinct.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Dynamic.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Filter.beam
+│           │       ├── Elixir.Ecto.Query.Builder.From.beam
+│           │       ├── Elixir.Ecto.Query.Builder.GroupBy.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Join.beam
+│           │       ├── Elixir.Ecto.Query.Builder.LimitOffset.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Lock.beam
+│           │       ├── Elixir.Ecto.Query.Builder.OrderBy.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Preload.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Select.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Update.beam
+│           │       ├── Elixir.Ecto.Query.Builder.Windows.beam
+│           │       ├── Elixir.Ecto.Query.CastError.beam
+│           │       ├── Elixir.Ecto.Query.CompileError.beam
+│           │       ├── Elixir.Ecto.Query.DynamicExpr.beam
+│           │       ├── Elixir.Ecto.QueryError.beam
+│           │       ├── Elixir.Ecto.Query.FromExpr.beam
+│           │       ├── Elixir.Ecto.Query.JoinExpr.beam
+│           │       ├── Elixir.Ecto.Query.Planner.beam
+│           │       ├── Elixir.Ecto.Query.QueryExpr.beam
+│           │       ├── Elixir.Ecto.Query.SelectExpr.beam
+│           │       ├── Elixir.Ecto.Query.Tagged.beam
+│           │       ├── Elixir.Ecto.Query.WindowAPI.beam
+│           │       ├── Elixir.Ecto.Query.WithExpr.beam
+│           │       ├── Elixir.Ecto.Repo.Assoc.beam
+│           │       ├── Elixir.Ecto.Repo.beam
+│           │       ├── Elixir.Ecto.Repo.Preloader.beam
+│           │       ├── Elixir.Ecto.Repo.Queryable.beam
+│           │       ├── Elixir.Ecto.Repo.Registry.beam
+│           │       ├── Elixir.Ecto.Repo.Schema.beam
+│           │       ├── Elixir.Ecto.Repo.Supervisor.beam
+│           │       ├── Elixir.Ecto.Repo.Transaction.beam
+│           │       ├── Elixir.Ecto.Schema.beam
+│           │       ├── Elixir.Ecto.Schema.Loader.beam
+│           │       ├── Elixir.Ecto.Schema.Metadata.beam
+│           │       ├── Elixir.Ecto.StaleEntryError.beam
+│           │       ├── Elixir.Ecto.SubQuery.beam
+│           │       ├── Elixir.Ecto.SubQueryError.beam
+│           │       ├── Elixir.Ecto.Type.beam
+│           │       ├── Elixir.Ecto.UUID.beam
+│           │       ├── Elixir.Inspect.Ecto.Association.NotLoaded.beam
+│           │       ├── Elixir.Inspect.Ecto.Changeset.beam
+│           │       ├── Elixir.Inspect.Ecto.Query.beam
+│           │       ├── Elixir.Inspect.Ecto.Query.DynamicExpr.beam
+│           │       ├── Elixir.Inspect.Ecto.Schema.Metadata.beam
+│           │       ├── Elixir.Jason.Encoder.Ecto.Association.NotLoaded.beam
+│           │       ├── Elixir.Jason.Encoder.Ecto.Schema.Metadata.beam
+│           │       ├── Elixir.Mix.Ecto.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Create.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Drop.beam
+│           │       └── Elixir.Mix.Tasks.Ecto.Gen.Repo.beam
+│           ├── ecto_sql
+│           │   └── ebin
+│           │       ├── ecto_sql.app
+│           │       ├── Elixir.Collectable.Ecto.Adapters.SQL.Stream.beam
+│           │       ├── Elixir.Ecto.Adapter.Migration.beam
+│           │       ├── Elixir.Ecto.Adapters.MySQL.beam
+│           │       ├── Elixir.Ecto.Adapters.MyXQL.beam
+│           │       ├── Elixir.Ecto.Adapters.Postgres.beam
+│           │       ├── Elixir.Ecto.Adapters.Postgres.Connection.beam
+│           │       ├── Elixir.Ecto.Adapters.SQL.Application.beam
+│           │       ├── Elixir.Ecto.Adapters.SQL.beam
+│           │       ├── Elixir.Ecto.Adapters.SQL.Connection.beam
+│           │       ├── Elixir.Ecto.Adapters.SQL.Sandbox.beam
+│           │       ├── Elixir.Ecto.Adapters.SQL.Sandbox.Connection.beam
+│           │       ├── Elixir.Ecto.Adapters.SQL.Stream.beam
+│           │       ├── Elixir.Ecto.Adapters.Tds.beam
+│           │       ├── Elixir.Ecto.Adapter.Structure.beam
+│           │       ├── Elixir.Ecto.Migration.beam
+│           │       ├── Elixir.Ecto.Migration.Command.beam
+│           │       ├── Elixir.Ecto.Migration.Constraint.beam
+│           │       ├── Elixir.Ecto.Migration.Index.beam
+│           │       ├── Elixir.Ecto.Migration.Reference.beam
+│           │       ├── Elixir.Ecto.Migration.Runner.beam
+│           │       ├── Elixir.Ecto.Migration.SchemaMigration.beam
+│           │       ├── Elixir.Ecto.Migration.Table.beam
+│           │       ├── Elixir.Ecto.Migrator.beam
+│           │       ├── Elixir.Enumerable.Ecto.Adapters.SQL.Stream.beam
+│           │       ├── Elixir.Mix.EctoSQL.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Dump.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Gen.Migration.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Load.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Migrate.beam
+│           │       ├── Elixir.Mix.Tasks.Ecto.Migrations.beam
+│           │       └── Elixir.Mix.Tasks.Ecto.Rollback.beam
+│           ├── file_system
+│           │   ├── ebin
+│           │   │   ├── Elixir.FileSystem.Backend.beam
+│           │   │   ├── Elixir.FileSystem.Backends.FSInotify.beam
+│           │   │   ├── Elixir.FileSystem.Backends.FSMac.beam
+│           │   │   ├── Elixir.FileSystem.Backends.FSPoll.beam
+│           │   │   ├── Elixir.FileSystem.Backends.FSWindows.beam
+│           │   │   ├── Elixir.FileSystem.beam
+│           │   │   ├── Elixir.FileSystem.Worker.beam
+│           │   │   └── file_system.app
+│           │   └── priv -> ../../../../deps/file_system/priv
+│           ├── jason
+│           │   └── ebin
+│           │       ├── Elixir.Jason.beam
+│           │       ├── Elixir.Jason.Codegen.beam
+│           │       ├── Elixir.Jason.DecodeError.beam
+│           │       ├── Elixir.Jason.Decoder.beam
+│           │       ├── Elixir.Jason.Decoder.Unescape.beam
+│           │       ├── Elixir.Jason.Encode.beam
+│           │       ├── Elixir.Jason.EncodeError.beam
+│           │       ├── Elixir.Jason.Encoder.Any.beam
+│           │       ├── Elixir.Jason.Encoder.Atom.beam
+│           │       ├── Elixir.Jason.Encoder.beam
+│           │       ├── Elixir.Jason.Encoder.BitString.beam
+│           │       ├── Elixir.Jason.Encoder.Date.beam
+│           │       ├── Elixir.Jason.Encoder.DateTime.beam
+│           │       ├── Elixir.Jason.Encoder.Decimal.beam
+│           │       ├── Elixir.Jason.Encoder.Float.beam
+│           │       ├── Elixir.Jason.Encoder.Integer.beam
+│           │       ├── Elixir.Jason.Encoder.Jason.Fragment.beam
+│           │       ├── Elixir.Jason.Encoder.List.beam
+│           │       ├── Elixir.Jason.Encoder.Map.beam
+│           │       ├── Elixir.Jason.Encoder.NaiveDateTime.beam
+│           │       ├── Elixir.Jason.Encoder.Time.beam
+│           │       ├── Elixir.Jason.Formatter.beam
+│           │       ├── Elixir.Jason.Fragment.beam
+│           │       ├── Elixir.Jason.Helpers.beam
+│           │       └── jason.app
+│           ├── poison
+│           │   └── ebin
+│           │       ├── Elixir.Poison.beam
+│           │       ├── Elixir.Poison.Decode.beam
+│           │       ├── Elixir.Poison.Decoder.Any.beam
+│           │       ├── Elixir.Poison.Decoder.beam
+│           │       ├── Elixir.Poison.Encode.beam
+│           │       ├── Elixir.Poison.EncodeError.beam
+│           │       ├── Elixir.Poison.Encoder.Any.beam
+│           │       ├── Elixir.Poison.Encoder.Atom.beam
+│           │       ├── Elixir.Poison.Encoder.beam
+│           │       ├── Elixir.Poison.Encoder.BitString.beam
+│           │       ├── Elixir.Poison.Encoder.Date.beam
+│           │       ├── Elixir.Poison.Encoder.DateTime.beam
+│           │       ├── Elixir.Poison.Encoder.Float.beam
+│           │       ├── Elixir.Poison.Encoder.HashSet.beam
+│           │       ├── Elixir.Poison.Encoder.Integer.beam
+│           │       ├── Elixir.Poison.Encoder.List.beam
+│           │       ├── Elixir.Poison.Encoder.Map.beam
+│           │       ├── Elixir.Poison.Encoder.MapSet.beam
+│           │       ├── Elixir.Poison.Encoder.NaiveDateTime.beam
+│           │       ├── Elixir.Poison.Encoder.Range.beam
+│           │       ├── Elixir.Poison.Encoder.Stream.beam
+│           │       ├── Elixir.Poison.Encoder.Time.beam
+│           │       ├── Elixir.Poison.Parser.beam
+│           │       ├── Elixir.Poison.Pretty.beam
+│           │       ├── Elixir.Poison.SyntaxError.beam
+│           │       └── poison.app
+│           ├── postgrex
+│           │   └── ebin
+│           │       ├── Elixir.Collectable.Postgrex.Stream.beam
+│           │       ├── Elixir.DBConnection.Query.Postgrex.Copy.beam
+│           │       ├── Elixir.DBConnection.Query.Postgrex.Parameters.beam
+│           │       ├── Elixir.DBConnection.Query.Postgrex.Query.beam
+│           │       ├── Elixir.Enumerable.Postgrex.Stream.beam
+│           │       ├── Elixir.Postgrex.App.beam
+│           │       ├── Elixir.Postgrex.beam
+│           │       ├── Elixir.Postgrex.BinaryExtension.beam
+│           │       ├── Elixir.Postgrex.BinaryUtils.beam
+│           │       ├── Elixir.Postgrex.Box.beam
+│           │       ├── Elixir.Postgrex.Circle.beam
+│           │       ├── Elixir.Postgrex.Copy.beam
+│           │       ├── Elixir.Postgrex.Cursor.beam
+│           │       ├── Elixir.Postgrex.DefaultTypes.beam
+│           │       ├── Elixir.Postgrex.Error.beam
+│           │       ├── Elixir.Postgrex.ErrorCode.beam
+│           │       ├── Elixir.Postgrex.Extension.beam
+│           │       ├── Elixir.Postgrex.Extensions.Array.beam
+│           │       ├── Elixir.Postgrex.Extensions.BitString.beam
+│           │       ├── Elixir.Postgrex.Extensions.Bool.beam
+│           │       ├── Elixir.Postgrex.Extensions.Box.beam
+│           │       ├── Elixir.Postgrex.Extensions.Circle.beam
+│           │       ├── Elixir.Postgrex.Extensions.Date.beam
+│           │       ├── Elixir.Postgrex.Extensions.Float4.beam
+│           │       ├── Elixir.Postgrex.Extensions.Float8.beam
+│           │       ├── Elixir.Postgrex.Extensions.HStore.beam
+│           │       ├── Elixir.Postgrex.Extensions.INET.beam
+│           │       ├── Elixir.Postgrex.Extensions.Int2.beam
+│           │       ├── Elixir.Postgrex.Extensions.Int4.beam
+│           │       ├── Elixir.Postgrex.Extensions.Int8.beam
+│           │       ├── Elixir.Postgrex.Extensions.Interval.beam
+│           │       ├── Elixir.Postgrex.Extensions.JSONB.beam
+│           │       ├── Elixir.Postgrex.Extensions.JSON.beam
+│           │       ├── Elixir.Postgrex.Extensions.Line.beam
+│           │       ├── Elixir.Postgrex.Extensions.LineSegment.beam
+│           │       ├── Elixir.Postgrex.Extensions.MACADDR.beam
+│           │       ├── Elixir.Postgrex.Extensions.Name.beam
+│           │       ├── Elixir.Postgrex.Extensions.Numeric.beam
+│           │       ├── Elixir.Postgrex.Extensions.OID.beam
+│           │       ├── Elixir.Postgrex.Extensions.Path.beam
+│           │       ├── Elixir.Postgrex.Extensions.Point.beam
+│           │       ├── Elixir.Postgrex.Extensions.Polygon.beam
+│           │       ├── Elixir.Postgrex.Extensions.Range.beam
+│           │       ├── Elixir.Postgrex.Extensions.Raw.beam
+│           │       ├── Elixir.Postgrex.Extensions.Record.beam
+│           │       ├── Elixir.Postgrex.Extensions.TID.beam
+│           │       ├── Elixir.Postgrex.Extensions.Time.beam
+│           │       ├── Elixir.Postgrex.Extensions.Timestamp.beam
+│           │       ├── Elixir.Postgrex.Extensions.TimestampTZ.beam
+│           │       ├── Elixir.Postgrex.Extensions.TimeTZ.beam
+│           │       ├── Elixir.Postgrex.Extensions.TSVector.beam
+│           │       ├── Elixir.Postgrex.Extensions.UUID.beam
+│           │       ├── Elixir.Postgrex.Extensions.VoidBinary.beam
+│           │       ├── Elixir.Postgrex.Extensions.VoidText.beam
+│           │       ├── Elixir.Postgrex.INET.beam
+│           │       ├── Elixir.Postgrex.Interval.beam
+│           │       ├── Elixir.Postgrex.Lexeme.beam
+│           │       ├── Elixir.Postgrex.Line.beam
+│           │       ├── Elixir.Postgrex.LineSegment.beam
+│           │       ├── Elixir.Postgrex.MACADDR.beam
+│           │       ├── Elixir.Postgrex.Messages.beam
+│           │       ├── Elixir.Postgrex.Notifications.beam
+│           │       ├── Elixir.Postgrex.Parameters.beam
+│           │       ├── Elixir.Postgrex.Path.beam
+│           │       ├── Elixir.Postgrex.Point.beam
+│           │       ├── Elixir.Postgrex.Polygon.beam
+│           │       ├── Elixir.Postgrex.Protocol.beam
+│           │       ├── Elixir.Postgrex.Query.beam
+│           │       ├── Elixir.Postgrex.QueryError.beam
+│           │       ├── Elixir.Postgrex.Range.beam
+│           │       ├── Elixir.Postgrex.Result.beam
+│           │       ├── Elixir.Postgrex.SCRAM.beam
+│           │       ├── Elixir.Postgrex.Stream.beam
+│           │       ├── Elixir.Postgrex.SuperExtension.beam
+│           │       ├── Elixir.Postgrex.TypeInfo.beam
+│           │       ├── Elixir.Postgrex.TypeModule.beam
+│           │       ├── Elixir.Postgrex.Types.beam
+│           │       ├── Elixir.Postgrex.TypeServer.beam
+│           │       ├── Elixir.Postgrex.TypeSupervisor.beam
+│           │       ├── Elixir.Postgrex.Utils.beam
+│           │       ├── Elixir.String.Chars.Postgrex.Copy.beam
+│           │       ├── Elixir.String.Chars.Postgrex.Query.beam
+│           │       └── postgrex.app
+│           └── telemetry
+│               ├── ebin -> ../../../../deps/telemetry/ebin
+│               └── mix.rebar.config
+├── config
+│   └── config.exs
+├── deps
+│   ├── bunt
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── bunt_ansi.ex
+│   │   │   └── bunt.ex
+│   │   ├── LICENSE
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── connection
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   └── connection.ex
+│   │   ├── LICENSE
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── credo
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── credo
+│   │   │   │   ├── application.ex
+│   │   │   │   ├── check
+│   │   │   │   │   ├── config_comment.ex
+│   │   │   │   │   ├── config_comment_finder.ex
+│   │   │   │   │   ├── consistency
+│   │   │   │   │   │   ├── collector.ex
+│   │   │   │   │   │   ├── exception_names
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   ├── exception_names.ex
+│   │   │   │   │   │   ├── line_endings
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   ├── line_endings.ex
+│   │   │   │   │   │   ├── multi_alias_import_require_use
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   ├── multi_alias_import_require_use.ex
+│   │   │   │   │   │   ├── parameter_pattern_matching
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   ├── parameter_pattern_matching.ex
+│   │   │   │   │   │   ├── space_around_operators
+│   │   │   │   │   │   │   ├── collector.ex
+│   │   │   │   │   │   │   └── space_helper.ex
+│   │   │   │   │   │   ├── space_around_operators.ex
+│   │   │   │   │   │   ├── space_in_parentheses
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   ├── space_in_parentheses.ex
+│   │   │   │   │   │   ├── tabs_or_spaces
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   ├── tabs_or_spaces.ex
+│   │   │   │   │   │   ├── unused_variable_names
+│   │   │   │   │   │   │   └── collector.ex
+│   │   │   │   │   │   └── unused_variable_names.ex
+│   │   │   │   │   ├── design
+│   │   │   │   │   │   ├── alias_usage.ex
+│   │   │   │   │   │   ├── duplicated_code.ex
+│   │   │   │   │   │   ├── tag_fixme.ex
+│   │   │   │   │   │   ├── tag_helper.ex
+│   │   │   │   │   │   └── tag_todo.ex
+│   │   │   │   │   ├── params.ex
+│   │   │   │   │   ├── readability
+│   │   │   │   │   │   ├── alias_as.ex
+│   │   │   │   │   │   ├── alias_order.ex
+│   │   │   │   │   │   ├── block_pipe.ex
+│   │   │   │   │   │   ├── function_names.ex
+│   │   │   │   │   │   ├── impl_true.ex
+│   │   │   │   │   │   ├── large_numbers.ex
+│   │   │   │   │   │   ├── max_line_length.ex
+│   │   │   │   │   │   ├── module_attribute_names.ex
+│   │   │   │   │   │   ├── module_doc.ex
+│   │   │   │   │   │   ├── module_names.ex
+│   │   │   │   │   │   ├── multi_alias.ex
+│   │   │   │   │   │   ├── parentheses_in_condition.ex
+│   │   │   │   │   │   ├── parentheses_on_zero_arity_defs.ex
+│   │   │   │   │   │   ├── predicate_function_names.ex
+│   │   │   │   │   │   ├── prefer_implicit_try.ex
+│   │   │   │   │   │   ├── prefer_unquoted_atoms.ex
+│   │   │   │   │   │   ├── redundant_blank_lines.ex
+│   │   │   │   │   │   ├── semicolons.ex
+│   │   │   │   │   │   ├── separate_alias_require.ex
+│   │   │   │   │   │   ├── single_pipe.ex
+│   │   │   │   │   │   ├── space_after_commas.ex
+│   │   │   │   │   │   ├── specs.ex
+│   │   │   │   │   │   ├── strict_module_layout.ex
+│   │   │   │   │   │   ├── string_sigils.ex
+│   │   │   │   │   │   ├── trailing_blank_line.ex
+│   │   │   │   │   │   ├── trailing_white_space.ex
+│   │   │   │   │   │   ├── unnecessary_alias_expansion.ex
+│   │   │   │   │   │   ├── variable_names.ex
+│   │   │   │   │   │   └── with_custom_tagged_tuple.ex
+│   │   │   │   │   ├── refactor
+│   │   │   │   │   │   ├── abc_size.ex
+│   │   │   │   │   │   ├── append_single_item.ex
+│   │   │   │   │   │   ├── case_trivial_matches.ex
+│   │   │   │   │   │   ├── cond_statements.ex
+│   │   │   │   │   │   ├── cyclomatic_complexity.ex
+│   │   │   │   │   │   ├── double_boolean_negation.ex
+│   │   │   │   │   │   ├── function_arity.ex
+│   │   │   │   │   │   ├── long_quote_blocks.ex
+│   │   │   │   │   │   ├── map_into.ex
+│   │   │   │   │   │   ├── match_in_condition.ex
+│   │   │   │   │   │   ├── module_dependencies.ex
+│   │   │   │   │   │   ├── negated_conditions_in_unless.ex
+│   │   │   │   │   │   ├── negated_conditions_with_else.ex
+│   │   │   │   │   │   ├── negated_is_nil.ex
+│   │   │   │   │   │   ├── nesting.ex
+│   │   │   │   │   │   ├── perceived_complexity.ex
+│   │   │   │   │   │   ├── pipe_chain_start.ex
+│   │   │   │   │   │   ├── unless_with_else.ex
+│   │   │   │   │   │   ├── variable_rebinding.ex
+│   │   │   │   │   │   └── with_clauses.ex
+│   │   │   │   │   ├── runner.ex
+│   │   │   │   │   ├── warning
+│   │   │   │   │   │   ├── application_config_in_module_attribute.ex
+│   │   │   │   │   │   ├── bool_operation_on_same_values.ex
+│   │   │   │   │   │   ├── expensive_empty_enum_check.ex
+│   │   │   │   │   │   ├── iex_pry.ex
+│   │   │   │   │   │   ├── io_inspect.ex
+│   │   │   │   │   │   ├── lazy_logging.ex
+│   │   │   │   │   │   ├── leaky_environment.ex
+│   │   │   │   │   │   ├── map_get_unsafe_pass.ex
+│   │   │   │   │   │   ├── mix_env.ex
+│   │   │   │   │   │   ├── operation_on_same_values.ex
+│   │   │   │   │   │   ├── operation_with_constant_result.ex
+│   │   │   │   │   │   ├── raise_inside_rescue.ex
+│   │   │   │   │   │   ├── unsafe_exec.ex
+│   │   │   │   │   │   ├── unsafe_to_atom.ex
+│   │   │   │   │   │   ├── unused_enum_operation.ex
+│   │   │   │   │   │   ├── unused_file_operation.ex
+│   │   │   │   │   │   ├── unused_function_return_helper.ex
+│   │   │   │   │   │   ├── unused_keyword_operation.ex
+│   │   │   │   │   │   ├── unused_list_operation.ex
+│   │   │   │   │   │   ├── unused_operation.ex
+│   │   │   │   │   │   ├── unused_path_operation.ex
+│   │   │   │   │   │   ├── unused_regex_operation.ex
+│   │   │   │   │   │   ├── unused_string_operation.ex
+│   │   │   │   │   │   └── unused_tuple_operation.ex
+│   │   │   │   │   └── worker.ex
+│   │   │   │   ├── check.ex
+│   │   │   │   ├── cli
+│   │   │   │   │   ├── command
+│   │   │   │   │   │   ├── categories
+│   │   │   │   │   │   │   ├── categories_command.ex
+│   │   │   │   │   │   │   ├── categories_output.ex
+│   │   │   │   │   │   │   └── output
+│   │   │   │   │   │   │       ├── default.ex
+│   │   │   │   │   │   │       └── json.ex
+│   │   │   │   │   │   ├── diff
+│   │   │   │   │   │   │   ├── diff_command.ex
+│   │   │   │   │   │   │   ├── diff_output.ex
+│   │   │   │   │   │   │   ├── diff_summary.ex
+│   │   │   │   │   │   │   └── output
+│   │   │   │   │   │   │       ├── default.ex
+│   │   │   │   │   │   │       ├── flycheck.ex
+│   │   │   │   │   │   │       ├── json.ex
+│   │   │   │   │   │   │       └── oneline.ex
+│   │   │   │   │   │   ├── explain
+│   │   │   │   │   │   │   ├── explain_command.ex
+│   │   │   │   │   │   │   ├── explain_output.ex
+│   │   │   │   │   │   │   └── output
+│   │   │   │   │   │   │       ├── default.ex
+│   │   │   │   │   │   │       └── json.ex
+│   │   │   │   │   │   ├── gen.check.ex
+│   │   │   │   │   │   ├── gen.config.ex
+│   │   │   │   │   │   ├── help.ex
+│   │   │   │   │   │   ├── info
+│   │   │   │   │   │   │   ├── info_command.ex
+│   │   │   │   │   │   │   ├── info_output.ex
+│   │   │   │   │   │   │   └── output
+│   │   │   │   │   │   │       ├── default.ex
+│   │   │   │   │   │   │       └── json.ex
+│   │   │   │   │   │   ├── list
+│   │   │   │   │   │   │   ├── list_command.ex
+│   │   │   │   │   │   │   ├── list_output.ex
+│   │   │   │   │   │   │   └── output
+│   │   │   │   │   │   │       ├── default.ex
+│   │   │   │   │   │   │       ├── flycheck.ex
+│   │   │   │   │   │   │       ├── json.ex
+│   │   │   │   │   │   │       └── oneline.ex
+│   │   │   │   │   │   ├── suggest
+│   │   │   │   │   │   │   ├── output
+│   │   │   │   │   │   │   │   ├── default.ex
+│   │   │   │   │   │   │   │   ├── flycheck.ex
+│   │   │   │   │   │   │   │   ├── json.ex
+│   │   │   │   │   │   │   │   └── oneline.ex
+│   │   │   │   │   │   │   ├── suggest_command.ex
+│   │   │   │   │   │   │   └── suggest_output.ex
+│   │   │   │   │   │   └── version.ex
+│   │   │   │   │   ├── command.ex
+│   │   │   │   │   ├── filename.ex
+│   │   │   │   │   ├── filter.ex
+│   │   │   │   │   ├── options.ex
+│   │   │   │   │   ├── output
+│   │   │   │   │   │   ├── format_delegator.ex
+│   │   │   │   │   │   ├── formatter
+│   │   │   │   │   │   │   ├── flycheck.ex
+│   │   │   │   │   │   │   ├── json.ex
+│   │   │   │   │   │   │   └── oneline.ex
+│   │   │   │   │   │   ├── shell.ex
+│   │   │   │   │   │   ├── summary.ex
+│   │   │   │   │   │   └── ui.ex
+│   │   │   │   │   ├── output.ex
+│   │   │   │   │   ├── sorter.ex
+│   │   │   │   │   └── task
+│   │   │   │   │       ├── load_and_validate_source_files.ex
+│   │   │   │   │       ├── prepare_checks_to_run.ex
+│   │   │   │   │       ├── run_checks.ex
+│   │   │   │   │       └── set_relevant_issues.ex
+│   │   │   │   ├── cli.ex
+│   │   │   │   ├── code
+│   │   │   │   │   ├── block.ex
+│   │   │   │   │   ├── charlists.ex
+│   │   │   │   │   ├── heredocs.ex
+│   │   │   │   │   ├── interpolation_helper.ex
+│   │   │   │   │   ├── module.ex
+│   │   │   │   │   ├── name.ex
+│   │   │   │   │   ├── parameters.ex
+│   │   │   │   │   ├── scope.ex
+│   │   │   │   │   ├── sigils.ex
+│   │   │   │   │   ├── strings.ex
+│   │   │   │   │   ├── token_ast_correlation.ex
+│   │   │   │   │   └── token.ex
+│   │   │   │   ├── code.ex
+│   │   │   │   ├── config_builder.ex
+│   │   │   │   ├── config_file.ex
+│   │   │   │   ├── execution
+│   │   │   │   │   ├── execution_config_files.ex
+│   │   │   │   │   ├── execution_issues.ex
+│   │   │   │   │   ├── execution_source_files.ex
+│   │   │   │   │   ├── execution_timing.ex
+│   │   │   │   │   ├── task
+│   │   │   │   │   │   ├── append_default_config.ex
+│   │   │   │   │   │   ├── assign_exit_status_for_issues.ex
+│   │   │   │   │   │   ├── convert_cli_options_to_config.ex
+│   │   │   │   │   │   ├── determine_command.ex
+│   │   │   │   │   │   ├── initialize_plugins.ex
+│   │   │   │   │   │   ├── parse_options.ex
+│   │   │   │   │   │   ├── require_requires.ex
+│   │   │   │   │   │   ├── run_command.ex
+│   │   │   │   │   │   ├── set_default_command.ex
+│   │   │   │   │   │   ├── use_colors.ex
+│   │   │   │   │   │   ├── validate_config.ex
+│   │   │   │   │   │   ├── validate_options.ex
+│   │   │   │   │   │   └── write_debug_report.ex
+│   │   │   │   │   └── task.ex
+│   │   │   │   ├── execution.ex
+│   │   │   │   ├── exs_loader.ex
+│   │   │   │   ├── issue.ex
+│   │   │   │   ├── issue_meta.ex
+│   │   │   │   ├── plugin.ex
+│   │   │   │   ├── priority.ex
+│   │   │   │   ├── service
+│   │   │   │   │   ├── config_files.ex
+│   │   │   │   │   ├── ets_table_helper.ex
+│   │   │   │   │   ├── source_file_ast.ex
+│   │   │   │   │   ├── source_file_lines.ex
+│   │   │   │   │   ├── source_file_scopes.ex
+│   │   │   │   │   └── source_file_source.ex
+│   │   │   │   ├── severity.ex
+│   │   │   │   ├── source_file.ex
+│   │   │   │   ├── sources.ex
+│   │   │   │   ├── test
+│   │   │   │   │   ├── assertions.ex
+│   │   │   │   │   ├── case.ex
+│   │   │   │   │   ├── check_runner.ex
+│   │   │   │   │   └── source_files.ex
+│   │   │   │   └── watcher.ex
+│   │   │   ├── credo.ex
+│   │   │   └── mix
+│   │   │       └── tasks
+│   │   │           ├── credo.ex
+│   │   │           ├── credo.gen.check.ex
+│   │   │           └── credo.gen.config.ex
+│   │   ├── LICENSE
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── db_connection
+│   │   ├── CHANGELOG.md
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── db_connection
+│   │   │   │   ├── app.ex
+│   │   │   │   ├── backoff.ex
+│   │   │   │   ├── connection.ex
+│   │   │   │   ├── connection_pool
+│   │   │   │   │   └── pool.ex
+│   │   │   │   ├── connection_pool.ex
+│   │   │   │   ├── holder.ex
+│   │   │   │   ├── log_entry.ex
+│   │   │   │   ├── ownership
+│   │   │   │   │   ├── manager.ex
+│   │   │   │   │   └── proxy.ex
+│   │   │   │   ├── ownership.ex
+│   │   │   │   ├── query.ex
+│   │   │   │   ├── task.ex
+│   │   │   │   └── watcher.ex
+│   │   │   └── db_connection.ex
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── decimal
+│   │   ├── CHANGELOG.md
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── decimal
+│   │   │   │   ├── context.ex
+│   │   │   │   ├── error.ex
+│   │   │   │   └── macros.ex
+│   │   │   └── decimal.ex
+│   │   ├── LICENSE.txt
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── ecto
+│   │   ├── CHANGELOG.md
+│   │   ├── hex_metadata.config
+│   │   ├── integration_test
+│   │   │   ├── cases
+│   │   │   │   ├── assoc.exs
+│   │   │   │   ├── interval.exs
+│   │   │   │   ├── joins.exs
+│   │   │   │   ├── preload.exs
+│   │   │   │   ├── repo.exs
+│   │   │   │   ├── type.exs
+│   │   │   │   └── windows.exs
+│   │   │   └── support
+│   │   │       ├── schemas.exs
+│   │   │       └── types.exs
+│   │   ├── lib
+│   │   │   ├── ecto
+│   │   │   │   ├── adapter
+│   │   │   │   │   ├── queryable.ex
+│   │   │   │   │   ├── schema.ex
+│   │   │   │   │   ├── storage.ex
+│   │   │   │   │   └── transaction.ex
+│   │   │   │   ├── adapter.ex
+│   │   │   │   ├── application.ex
+│   │   │   │   ├── association.ex
+│   │   │   │   ├── changeset
+│   │   │   │   │   └── relation.ex
+│   │   │   │   ├── changeset.ex
+│   │   │   │   ├── embedded.ex
+│   │   │   │   ├── enum.ex
+│   │   │   │   ├── exceptions.ex
+│   │   │   │   ├── json.ex
+│   │   │   │   ├── multi.ex
+│   │   │   │   ├── parameterized_type.ex
+│   │   │   │   ├── query
+│   │   │   │   │   ├── api.ex
+│   │   │   │   │   ├── builder
+│   │   │   │   │   │   ├── combination.ex
+│   │   │   │   │   │   ├── cte.ex
+│   │   │   │   │   │   ├── distinct.ex
+│   │   │   │   │   │   ├── dynamic.ex
+│   │   │   │   │   │   ├── filter.ex
+│   │   │   │   │   │   ├── from.ex
+│   │   │   │   │   │   ├── group_by.ex
+│   │   │   │   │   │   ├── join.ex
+│   │   │   │   │   │   ├── limit_offset.ex
+│   │   │   │   │   │   ├── lock.ex
+│   │   │   │   │   │   ├── order_by.ex
+│   │   │   │   │   │   ├── preload.ex
+│   │   │   │   │   │   ├── select.ex
+│   │   │   │   │   │   ├── update.ex
+│   │   │   │   │   │   └── windows.ex
+│   │   │   │   │   ├── builder.ex
+│   │   │   │   │   ├── inspect.ex
+│   │   │   │   │   ├── planner.ex
+│   │   │   │   │   └── window_api.ex
+│   │   │   │   ├── queryable.ex
+│   │   │   │   ├── query.ex
+│   │   │   │   ├── repo
+│   │   │   │   │   ├── assoc.ex
+│   │   │   │   │   ├── preloader.ex
+│   │   │   │   │   ├── queryable.ex
+│   │   │   │   │   ├── registry.ex
+│   │   │   │   │   ├── schema.ex
+│   │   │   │   │   ├── supervisor.ex
+│   │   │   │   │   └── transaction.ex
+│   │   │   │   ├── repo.ex
+│   │   │   │   ├── schema
+│   │   │   │   │   ├── loader.ex
+│   │   │   │   │   └── metadata.ex
+│   │   │   │   ├── schema.ex
+│   │   │   │   ├── type.ex
+│   │   │   │   └── uuid.ex
+│   │   │   ├── ecto.ex
+│   │   │   └── mix
+│   │   │       ├── ecto.ex
+│   │   │       └── tasks
+│   │   │           ├── ecto.create.ex
+│   │   │           ├── ecto.drop.ex
+│   │   │           ├── ecto.ex
+│   │   │           └── ecto.gen.repo.ex
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── ecto_sql
+│   │   ├── CHANGELOG.md
+│   │   ├── hex_metadata.config
+│   │   ├── integration_test
+│   │   │   ├── sql
+│   │   │   │   ├── alter.exs
+│   │   │   │   ├── lock.exs
+│   │   │   │   ├── logging.exs
+│   │   │   │   ├── migration.exs
+│   │   │   │   ├── migrator.exs
+│   │   │   │   ├── sandbox.exs
+│   │   │   │   ├── sql.exs
+│   │   │   │   ├── stream.exs
+│   │   │   │   ├── subquery.exs
+│   │   │   │   └── transaction.exs
+│   │   │   └── support
+│   │   │       ├── file_helpers.exs
+│   │   │       ├── migration.exs
+│   │   │       └── repo.exs
+│   │   ├── lib
+│   │   │   ├── ecto
+│   │   │   │   ├── adapter
+│   │   │   │   │   ├── migration.ex
+│   │   │   │   │   └── structure.ex
+│   │   │   │   ├── adapters
+│   │   │   │   │   ├── mysql.ex
+│   │   │   │   │   ├── myxql
+│   │   │   │   │   │   └── connection.ex
+│   │   │   │   │   ├── myxql.ex
+│   │   │   │   │   ├── postgres
+│   │   │   │   │   │   └── connection.ex
+│   │   │   │   │   ├── postgres.ex
+│   │   │   │   │   ├── sql
+│   │   │   │   │   │   ├── application.ex
+│   │   │   │   │   │   ├── connection.ex
+│   │   │   │   │   │   ├── sandbox.ex
+│   │   │   │   │   │   └── stream.ex
+│   │   │   │   │   ├── sql.ex
+│   │   │   │   │   ├── tds
+│   │   │   │   │   │   ├── connection.ex
+│   │   │   │   │   │   └── types.ex
+│   │   │   │   │   └── tds.ex
+│   │   │   │   ├── migration
+│   │   │   │   │   ├── runner.ex
+│   │   │   │   │   └── schema_migration.ex
+│   │   │   │   ├── migration.ex
+│   │   │   │   └── migrator.ex
+│   │   │   └── mix
+│   │   │       ├── ecto_sql.ex
+│   │   │       └── tasks
+│   │   │           ├── ecto.dump.ex
+│   │   │           ├── ecto.gen.migration.ex
+│   │   │           ├── ecto.load.ex
+│   │   │           ├── ecto.migrate.ex
+│   │   │           ├── ecto.migrations.ex
+│   │   │           └── ecto.rollback.ex
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── file_system
+│   │   ├── c_src
+│   │   │   └── mac
+│   │   │       ├── cli.c
+│   │   │       ├── cli.h
+│   │   │       ├── common.h
+│   │   │       ├── compat.c
+│   │   │       ├── compat.h
+│   │   │       └── main.c
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── file_system
+│   │   │   │   ├── backend.ex
+│   │   │   │   ├── backends
+│   │   │   │   │   ├── fs_inotify.ex
+│   │   │   │   │   ├── fs_mac.ex
+│   │   │   │   │   ├── fs_poll.ex
+│   │   │   │   │   └── fs_windows.ex
+│   │   │   │   └── worker.ex
+│   │   │   └── file_system.ex
+│   │   ├── mix.exs
+│   │   ├── priv
+│   │   │   └── inotifywait.exe
+│   │   └── README.md
+│   ├── jason
+│   │   ├── CHANGELOG.md
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── codegen.ex
+│   │   │   ├── decoder.ex
+│   │   │   ├── encode.ex
+│   │   │   ├── encoder.ex
+│   │   │   ├── formatter.ex
+│   │   │   ├── fragment.ex
+│   │   │   ├── helpers.ex
+│   │   │   └── jason.ex
+│   │   ├── LICENSE
+│   │   ├── mix.exs
+│   │   └── README.md
+│   ├── poison
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── poison
+│   │   │   │   ├── decoder.ex
+│   │   │   │   ├── encoder.ex
+│   │   │   │   └── parser.ex
+│   │   │   └── poison.ex
+│   │   ├── LICENSE
+│   │   ├── mix.exs
+│   │   ├── README.md
+│   │   └── VERSION
+│   ├── postgrex
+│   │   ├── CHANGELOG.md
+│   │   ├── hex_metadata.config
+│   │   ├── lib
+│   │   │   ├── postgrex
+│   │   │   │   ├── app.ex
+│   │   │   │   ├── binary_extension.ex
+│   │   │   │   ├── binary_utils.ex
+│   │   │   │   ├── builtins.ex
+│   │   │   │   ├── default_types.ex
+│   │   │   │   ├── errcodes.txt
+│   │   │   │   ├── error_code.ex
+│   │   │   │   ├── error.ex
+│   │   │   │   ├── extension.ex
+│   │   │   │   ├── extensions
+│   │   │   │   │   ├── array.ex
+│   │   │   │   │   ├── bit_string.ex
+│   │   │   │   │   ├── bool.ex
+│   │   │   │   │   ├── box.ex
+│   │   │   │   │   ├── circle.ex
+│   │   │   │   │   ├── date.ex
+│   │   │   │   │   ├── float4.ex
+│   │   │   │   │   ├── float8.ex
+│   │   │   │   │   ├── hstore.ex
+│   │   │   │   │   ├── inet.ex
+│   │   │   │   │   ├── int2.ex
+│   │   │   │   │   ├── int4.ex
+│   │   │   │   │   ├── int8.ex
+│   │   │   │   │   ├── interval.ex
+│   │   │   │   │   ├── jsonb.ex
+│   │   │   │   │   ├── json.ex
+│   │   │   │   │   ├── line.ex
+│   │   │   │   │   ├── line_segment.ex
+│   │   │   │   │   ├── macaddr.ex
+│   │   │   │   │   ├── name.ex
+│   │   │   │   │   ├── numeric.ex
+│   │   │   │   │   ├── oid.ex
+│   │   │   │   │   ├── path.ex
+│   │   │   │   │   ├── point.ex
+│   │   │   │   │   ├── polygon.ex
+│   │   │   │   │   ├── range.ex
+│   │   │   │   │   ├── raw.ex
+│   │   │   │   │   ├── record.ex
+│   │   │   │   │   ├── tid.ex
+│   │   │   │   │   ├── time.ex
+│   │   │   │   │   ├── timestamp.ex
+│   │   │   │   │   ├── timestamptz.ex
+│   │   │   │   │   ├── timetz.ex
+│   │   │   │   │   ├── tsvector.ex
+│   │   │   │   │   ├── uuid.ex
+│   │   │   │   │   ├── void_binary.ex
+│   │   │   │   │   └── void_text.ex
+│   │   │   │   ├── messages.ex
+│   │   │   │   ├── notifications.ex
+│   │   │   │   ├── parameters.ex
+│   │   │   │   ├── protocol.ex
+│   │   │   │   ├── query.ex
+│   │   │   │   ├── result.ex
+│   │   │   │   ├── scram.ex
+│   │   │   │   ├── stream.ex
+│   │   │   │   ├── super_extension.ex
+│   │   │   │   ├── type_info.ex
+│   │   │   │   ├── type_module.ex
+│   │   │   │   ├── type_server.ex
+│   │   │   │   ├── types.ex
+│   │   │   │   ├── type_supervisor.ex
+│   │   │   │   └── utils.ex
+│   │   │   └── postgrex.ex
+│   │   ├── mix.exs
+│   │   └── README.md
+│   └── telemetry
+│       ├── ebin
+│       │   ├── telemetry.app
+│       │   ├── telemetry_app.beam
+│       │   ├── telemetry.beam
+│       │   ├── telemetry_handler_table.beam
+│       │   └── telemetry_sup.beam
+│       ├── hex_metadata.config
+│       ├── LICENSE
+│       ├── NOTICE
+│       ├── README.md
+│       ├── rebar.config
+│       ├── rebar.lock
+│       └── src
+│           ├── telemetry_app.erl
+│           ├── telemetry.app.src
+│           ├── telemetry.erl
+│           ├── telemetry_handler_table.erl
+│           ├── telemetry.hrl
+│           └── telemetry_sup.erl
+├── lib
+│   ├── blockchain_processor
+│   │   ├── application.ex
+│   │   ├── #document_processor.ex#
+│   │   └── document_processor.ex
+│   ├── blockchain_processor.ex
+│   └── databases
+│       ├── i_index.ex
+│       └── repo.ex
+├── mix.exs
+├── mix.lock
+├── priv
+│   └── repo
+│       └── migrations
+│           ├── 20201202132208_create_iindex.exs
+│           ├── 20201204132916_create_m_index.exs
+│           └── 20201204132916_create_m_index.exs~
+├── README.md
+├── test
+│   ├── blockchain_processor_test.exs
+│   └── test_helper.exs
+└── treetxt
+
+142 directories, 1055 files
