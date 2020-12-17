@@ -10,16 +10,16 @@ defmodule MyWebsocketApp.SocketHandler do
   def websocket_init(state) do
     Registry.MyWebsocketApp
     |> Registry.register(state.registry_key, {})
-    
+
     {:ok, state}
   end
 
   def websocket_handle({:text, json}, state) do
     payload = Jason.decode!(json)
     message = payload["data"]["message"]
-    
+
     Registry.MyWebsocketApp
-    |> Registry.dispatch(state.registry_key, fn(entries) -> 
+    |> Registry.dispatch(state.registry_key, fn(entries) ->
       for {pid, _} <- entries do
         if pid != self() do
           Process.send(pid, message, [])

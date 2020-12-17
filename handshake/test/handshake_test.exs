@@ -1,6 +1,6 @@
-defmodule HandshakeTest do
+defmodule MyWebsocketApp.Test do
   use ExUnit.Case
-  doctest Handshake
+  doctest MyWebsocketApp
 
   test "greets the world" do
     assert Handshake.hello() == :world
