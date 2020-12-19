@@ -26,6 +26,9 @@ defmodule WS2P.Endpoint do
   def accept_connections!(port, path) do
     websocket_listener = Socket.Web.listen!(port)
     Logger.info("Listening for websocket connections on port #{port} at #{path}")
+
+    {_sec, pub} = @keypair
+    Logger.info("Public key: #{pub |> Base58.encode()}")
     loop_acceptor!(websocket_listener, path)
   end
 
