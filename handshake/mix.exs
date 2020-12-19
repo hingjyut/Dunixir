@@ -5,7 +5,7 @@ defmodule MyWebsocketApp.MixProject do
     [
       app: :my_websocket_app,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -23,6 +23,10 @@ defmodule MyWebsocketApp.MixProject do
   defp deps do
     [
       {:socket, "~> 0.3.13"},
+      {:poison, "~> 4.0"},
+      {:elixir_uuid, "~> 1.2"},
+      {:ed25519, "~> 1.3"},
+      {:B58, "~> 1.0", hex: :b58}
     ]
   end
 end
