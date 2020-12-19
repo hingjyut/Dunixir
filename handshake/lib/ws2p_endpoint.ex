@@ -2,7 +2,7 @@ defmodule WS2P.Endpoint do
   require Logger
 
   @keypair Ed25519.generate_key_pair()
-  @currency_name "g1"
+  @currency_name "g1-test"
 
   defp start_connection!(args) do
     {:ok, connection} =
@@ -19,8 +19,8 @@ defmodule WS2P.Endpoint do
     connection
   end
 
-  def connect!({address, port}, path) do
-    start_connection!({:connect, {address, port}, path})
+  def connect!({address, port}, socket_options \\ []) do
+    start_connection!({:connect, {address, port}, socket_options})
   end
 
   def accept_connections!(port, path) do

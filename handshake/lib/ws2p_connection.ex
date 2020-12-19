@@ -2,8 +2,8 @@ defmodule WS2P.Connection do
   use GenServer, restart: :transient
   require Logger
 
-  def start_link({:connect, address_and_port, path}) do
-    GenServer.start_link(__MODULE__, {:connect, address_and_port, path},
+  def start_link({:connect, address_and_port, socket_options}) do
+    GenServer.start_link(__MODULE__, {:connect, address_and_port, socket_options},
       name: {:via, Registry, {WS2P.Connection.Registry, address_and_port}}
     )
   end
@@ -14,9 +14,9 @@ defmodule WS2P.Connection do
     )
   end
 
-  def init({:connect, {address, port}, path}) do
-    socket = Socket.Web.connect!({address, port}, path: path)
-    Logger.info("Connected socket to #{address}:#{port} at #{path}")
+  def init({:connect, {address, port}, socket_options}) do
+    socket = Socket.Web.connect!({address, port}, socket_options)
+    Logger.info("Connected socket to #{address}:#{port}")
     {:ok, %{socket: socket}}
   end
 
