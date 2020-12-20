@@ -35,7 +35,6 @@ defmodule WS2P.Connection do
   defp loop(connection) do
     case connection |> WS2P.Connection.receive_object() do
       {_object, :answer, answer} ->
-        Logger.info("Sent back answer to remote node")
         connection |> WS2P.Connection.send_object(answer)
 
       _ ->
@@ -49,13 +48,13 @@ defmodule WS2P.Connection do
         %{
           "auth" => "OK",
           "sig" => _sig
-        } = ack_object,
+        } = ok_object,
         %{
           socket: socket
         } = state
       ) do
     Logger.info("Received OK from node #{inspect(Socket.Web.remote!(socket))}")
-    {:reply, {ack_object, :noanswer}, state}
+    {:reply, {ok_object, :noanswer}, state}
   end
 
   def handle_object(
@@ -113,7 +112,7 @@ defmodule WS2P.Connection do
   end
 
   def handle_object(object, state) do
-    IO.puts("Received object:")
+    IO.puts("Received unhandled object:")
     IO.inspect(object)
     {:reply, {object, :noanswer}, state}
   end
