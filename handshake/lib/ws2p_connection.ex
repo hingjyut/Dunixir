@@ -22,7 +22,7 @@ defmodule WS2P.Connection do
 
   def init({:accept, socket}) do
     Socket.Web.accept!(socket)
-    Logger.info("Accepted socket from #{socket.origin}")
+    Logger.info("Accepted socket from #{inspect Socket.Web.remote!(socket)}")
     {:ok, %{socket: socket}}
   end
 
@@ -89,7 +89,6 @@ defmodule WS2P.Connection do
         %{
           "auth" => "CONNECT",
           "challenge" => challenge,
-          "currency" => _currency,
           "pub" => _pub,
           "sig" => _sig
         } = connect_object,
