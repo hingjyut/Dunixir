@@ -120,6 +120,7 @@ defmodule Local do
     "identifier" => identifier,
     "pos" => pos,
     "written_on" => written_on,
+    "created_on" => _created_on,
     "written_time" => _written_time,
     "amount" => amount,
     "base" => base,

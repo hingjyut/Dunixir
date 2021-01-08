@@ -1,10 +1,8 @@
 defmodule Document.Processor do
 
   def add_identity(blockstamp, local_iindex,local_mindex,%{"pub" => pub,
-  "sig" => sig,
   "block_uid" => block_uid,
   "user_id"=> user_id}) do
-    #TODO match signature (crypto)
 
     {:ok,local_iindex} = Local.I.Index.insert(local_iindex,%{"op" => "CREATE",
     "uid" => user_id,
@@ -31,11 +29,10 @@ defmodule Document.Processor do
   end
 
   def add_joiner(blockstamp,local_iindex, local_mindex, %{"pub"=> pub,
-  "sig" => sig,
   "m_block_uid" => m_block_uid,
   "i_block_uid" => _i_block_uid,
   "user_id" => _user_id}) do
-    #TODO match signature
+
     match_create = Enum.find_value(local_mindex, fn x -> x["op"]=="CREATE" && x["pub"]==pub end )
     case match_create do
       nil ->
@@ -68,7 +65,6 @@ defmodule Document.Processor do
   end
 
   def add_active(blockstamp,local_mindex,%{"pub"=> pub,
-  "sig" => sig,
   "m_block_uid" => m_block_uid,
   "i_block_uid" => _i_block_uid,
   "user_id" => _user_id}) do
@@ -89,7 +85,6 @@ defmodule Document.Processor do
   end
 
   def add_leaver(blockstamp,local_mindex,%{"pub"=> pub,
-  "sig" => sig,
   "m_block_uid" => m_block_uid,
   "i_block_uid" => _i_block_uid,
   "user_id" => _user_id}) do
@@ -157,6 +152,48 @@ defmodule Document.Processor do
     "replayable_on" => Constants.medianTime + Constants.sigReplay})
     {:ok,local_cindex}
 
+  end
+
+  def add_tx_input(blockstamp,local_sindex,%{"tx_hash" => tx_hash,
+  "input_identifier" => input_identifier,
+  "input_index" => input_index,
+  "tx_blockstamp" => tx_blockstamp,
+  "input_amount" => input_amount,
+  "input_base" => input_base}) do
+    {:ok,local_sindex} = Local.S.Index.insert(local_sindex, %{"op" => "UPDATE",
+    "tx" => tx_hash,
+    "identifier" => input_identifier,
+    "pos" => input_index,
+    "written_on" => blockstamp,
+    "created_on" => tx_blockstamp,
+    "written_time" => nil,
+    "amount" => input_amount,
+    "base" => input_base,
+    "locktime" => nil,
+    "conditions" => nil,
+    "consumed" => true})
+    {:ok,local_sindex}
+  end
+
+  def add_tx_output(blockstamp, local_sindex, %{"tx_hash" => tx_hash,
+  "output_index" => output_index,
+  "output_amount" => output_amount,
+  "output_base" => output_base,
+  "locktime" => locktime,
+  "conditions" => conditions}) do
+    {:ok,local_sindex} = Local.S.Index.insert(local_sindex, %{"op" => "CREATE",
+    "tx" => tx_hash,
+    "identifier" => tx_hash,
+    "pos" => output_index,
+    "written_on" => blockstamp,
+    "created_on" => nil,
+    "written_time" => Constants.medianTime,
+    "amount" => output_amount,
+    "base" => output_base,
+    "locktime" => locktime,
+    "conditions" => conditions,
+    "consumed" => false})
+    {:ok,local_sindex}
   end
 
 end
