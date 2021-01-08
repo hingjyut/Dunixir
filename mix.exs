@@ -14,7 +14,7 @@ defmodule Dunixir.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:crypto, :inets, :logger],
+      extra_applications: [:crypto, :inets, :logger, :plug, :cowboy, :poison],
       mod: {Dunixir.Application, []}
     ]
   end
@@ -27,6 +27,12 @@ defmodule Dunixir.MixProject do
       {:scrypt_elixir, "~> 0.1.0"},
       {:enacl, "~> 1.1"},
       {:ymlr, "~> 1.0"}
+      # {:dep_from_hexpm, "~> 0.3.0"},
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.5"},
+      {:poison, "~> 3.1"},
+      {:plug_cowboy, "~> 1.0"},
     ]
   end
 end
