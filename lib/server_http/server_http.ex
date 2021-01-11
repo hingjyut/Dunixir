@@ -10,27 +10,16 @@ defmodule ServerHttp.Router do
   plug(:dispatch)
 
   get "/node/summary" do
-    json = Poison.encode!(
-      %{duniter:
-        %{software: "duniter",
-        version: Constants.version,
-        forkWindowSize: Constants.forkWindowSize
-        }
-      }
-    )
+    json = BMA.Node.Summary.get
     send_resp(conn, 200, json)
   end
 
   get "/node/sandboxes" do
-
-    json = Poison.encode!(
-      "#TODO"
-    )
+    json = BMA.Node.Sandboxes.get
     send_resp(conn, 200, json)
   end
 
   post "/wot/add" do
-
     {:ok, body, conn} = read_body(conn)
     body = Poison.decode!(body)
     send_resp(conn, 200, "#TODO")
@@ -50,36 +39,50 @@ defmodule ServerHttp.Router do
 
   get "wot/lookup/:search" do 
     #TODO
-    send_resp(conn, 200, "#TODO")
+    json = BMA.Wot.Lookup.get(search)
+    send_resp(conn, 200, json)
   end
 
   get "wot/members/" do 
     #TODO
-    send_resp(conn, 200, "#TODO")
+    json = BMA.Wot.Members.get
+    send_resp(conn, 200, json)
   end
 
   get "wot/requirements/:search" do 
     #TODO
+    json = BMA.Wot.Requirements.get(search)
+    send_resp(conn, 200, json)
   end
 
   get "wot/requirements-of-pending/:minsig" do 
     #TODO
+    json = BMA.Wot.RequirementsOfPending.get(minsig)
+    send_resp(conn, 200, json)
   end
 
   get "wot/certifiers-of/:search" do 
     #TODO
+    json = BMA.Wot.CertifiersOf.get(search)
+    send_resp(conn, 200, json)
   end
 
   get "wot/certified-by/:search" do 
     #TODO
+    json = BMA.Wot.CertifiersBy.get(search)
+    send_resp(conn, 200, json)
   end
 
   get "wot/identity-of/:search" do 
     #TODO
+    json = BMA.Wot.IdentityOf.get(search)
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/parameters/" do 
     #TODO
+    json = BMA.Blockchain.Parameters.get
+    send_resp(conn, 200, json)
   end
 
   post "blockchain/membership/" do 
@@ -88,6 +91,8 @@ defmodule ServerHttp.Router do
 
   get "blockchain/memberships/:search" do 
     #TODO
+    json = BMA.Blockchain.Memberships.get(search)    
+    send_resp(conn, 200, json)
   end
 
   post "blockchain/block/" do 
@@ -95,79 +100,100 @@ defmodule ServerHttp.Router do
   end
 
   get "blockchain/block/:number" do 
-    #TODO
+    json = BMA.Blockchain.Block.get(number)
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/blocks/:count/:from" do 
-    #TODO
+    json = BMA.Blockchain.Blocks.get(count,from)
+    send_resp(conn, 200, json)
   end
  
   get "blockchain/current/" do 
-    #TODO
+    json = BMA.Blockchain.Current.get
+    send_resp(conn, 200, json)
   end 
 
   get "blockchain/hardship/:search" do 
-    #TODO
+    json = BMA.Blockchain.Hardship.get(search)
+    send_resp(conn, 200, json)
   end
 
-  get "blockchain/difficulties/" do 
-    #TODO
+  get "blockchain/difficulties" do 
+    json = BMA.Blockchain.Difficulties.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/milestones" do 
     #TODO #non mentioned in the doc 
+    json = BMA.Blockchain.Milestones.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/milestones/:page" do 
     #TODO #non mentioned in the doc
+    json = BMA.Blockchain.Milestones.get(page)
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/newcomers" do 
-    #TODO
+    json = BMA.Blockchain.With.Newcomers.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/certs" do 
-    #TODO
+    json = BMA.Blockchain.With.Certs.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/joiners" do 
-    #TODO
+    json = BMA.Blockchain.With.Joiners.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/actives" do 
-    #TODO
+    json = BMA.Blockchain.With.Actives.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/leavers" do 
-    #TODO
+    json = BMA.Blockchain.With.Leavers.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/revoked" do 
-    #TODO
+    json = BMA.Blockchain.With.Revoked.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/excluded" do 
-    #TODO
+    json = BMA.Blockchain.With.Excluded.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/ud" do 
-    #TODO
+    json = BMA.Blockchain.With.Ud.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/with/tx" do 
-    #TODO
+    json = BMA.Blockchain.With.Tx.get
+    send_resp(conn, 200, json)
   end
 
   get "blockchain/branches" do 
-    #TODO
+    json = BMA.Blockchain.Branches.get
+    send_resp(conn, 200, json)
   end
 
   get "network/peers" do 
-    #TODO
+    json = BMA.Network.Peers.get
+    send_resp(conn, 200, json)
   end
 
   get "network/peering/peers" do 
-    #TODO
+    json = BMA.Network.Peering.Peers.get
+    send_resp(conn, 200, json)
   end
 
   post "network/peering/peers" do 
@@ -175,59 +201,78 @@ defmodule ServerHttp.Router do
   end
 
   get "network/peering" do 
-    #TODO
+    json = BMA.Network.Peering.get
+    send_resp(conn, 200, json)
   end
 
   get "network/ws2p/heads" do 
-    #TODO
+    json = BMA.Network.WS2P.Heads.get
+    send_resp(conn, 200, json)
   end
 
   get "network/ws2p/info" do 
     #TODO #non mentioned in the doc
+    json = BMA.Network.WS2P.Info.get
+    send_resp(conn, 200, json)
   end
 
   post "tx/process" do 
-    #TODO
+    json = BMA.Tx.Process.get
+    send_resp(conn, 200, json)
   end
 
   get "tx/hash/:hash" do 
     #TODO #non mentioned in the doc
+    json = BMA.Tx.Hash.get(hash)
+    send_resp(conn, 200, json)
   end
 
   get "tx/pending" do 
     #TODO #non mentioned in the doc (= history/pending ?)
+    json = BMA.Tx.Pending.get
+    send_resp(conn, 200, json)
   end
 
   get "tx/sources/:pubkey" do 
-    #TODO
+    json = BMA.Tx.Sources.get(pubkey)
+    send_resp(conn, 200, json)
   end
 
   get "tx/history/:pubkey" do 
-    #TODO
+    json = BMA.Tx.History.get(pubkey)
+    send_resp(conn, 200, json)
   end
 
   get "tx/history/:pubkey/pending" do 
-    #TODO
+    json = BMA.Tx.History.Pending.get(pubkey)
+    send_resp(conn, 200, json)
   end
 
   get "tx/history/:pubkey/blocks/:from/:to" do 
-    #TODO
+    json = BMA.Tx.History.Blocks.get(pubkey,from,to)
+    send_resp(conn, 200, json)
   end
 
   get "tx/history/:pubkey/times/:from/:to" do 
-    #TODO
+    json = BMA.Tx.History.Times.get(pubkey,from,to)
+    send_resp(conn, 200, json)
   end
 
   get "ud/history/:pubkey" do 
-    #TODO
+    json = BMA.Ud.History.get(pubkey)
+    send_resp(conn, 200, json)
   end
 
-  get "ud/history/:pubkey/block/:from/:to" do 
+  get "ud/history/:pubkey/blocks/:from/:to" do 
     #TODO #non mentioned in the doc
+    json = BMA.Ud.History.Blocks.get(pubkey,from,to)
+    send_resp(conn, 200, json)
   end
 
   get "ud/history/:pubkey/times/:from/:to" do 
     #TODO #non mentioned in the doc
+    json = BMA.Ud.History.Times.get(pubkey,from,to)
+    send_resp(conn, 200, json)
   end
 
   #I'm not sure about the last ones, more linked with ws2p
