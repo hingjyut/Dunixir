@@ -50,12 +50,6 @@ defmodule Crypto do
     keypair(base58_decode(seed))
   end
 
-  def gen_ed25519_keypair_with_base58() do
-    # return : {secret_key, public_key}
-    {sec_key, pub_key} = Ed25519.generate_key_pair()
-    {base58_encode(sec_key), base58_encode(pub_key)}
-  end
-
   def hash_sha256(data) do
     :crypto.hash(:sha256, data) |> Base.encode64()
   end
@@ -72,33 +66,43 @@ defmodule Crypto do
     :crypto.strong_rand_bytes(size)
   end
 
-
   @doc """
-      Sign a message with secret key
 
-      Example:
-      iex(1)>  {sec, pub} = Crypto.gen_ed25519_keypair_with_base64()
-      {<<187, 92, 206, 176, 77, 109, 208, 238, 62, 13, 42, 56, 170, 28, 99, 237, 131,
-        27, 29, 135, 66, 40, 148, 36, 153, 237, 10, 102, 167, 183, 190, 102>>,
-      <<177, 85, 206, 200, 39, 193, 52, 198, 98, 216, 245, 106, 171, 122, 19, 217,
-        221, 64, 168, 131, 224, 12, 110, 30, 164, 113, 104, 157, 45, 14, 99, 46>>}
-      iex(2)> signature = Crypto.sign_message_with_ed25519("Elixir is the best language", sec)
-      "z940JmXFuou9+y7smER5QXJ3KhlhSNkLWBCvDJUBgxS0wRh5lWLQT5MBL+F+oD4D8bD9nu3VXssJHD5wmzT3DA=="
+  Sign message with private key
+
+  Input:
+  message: string
+  secret key: a string which length is equal to 64
+
+  Output:
+  A signature written under Base64 encoding
+
+  Example:
+  iex(1)> {seckey, pubkey} = Crypto.generate_keypair()
+  {"63FrkQLfT1vxvQpA7b1WuzMH1RBYN55sqnHsjRmVXDhGqmE9m5An5acpWaZAQjtjP3Z26frR5URnjyjs8MUd1hV",
+  "CRJeqbTkr5LUqnpWZAFnzoSUUyfajNF87rjXvLQHm123"}
+  iex(2)> message = "hello world"
+  "hello world"
+  iex(3)> signature = Crypto.digital_signature(message, seckey)
+  "1O1AYlvH/ub174RVXn+ia3ZImOS6yWg+GBkgb1b3d5XvkxgLWAclo+esLDDhSkaz9NDCA+9Xs8bVE8FLBBUHBQ=="
+
   """
-  def sign_message_with_ed25519(message, seckey) do
-    # sign message from personal sec key, how can we get sec key safely?
+
+  def digital_signature(message, seckey) do
     # TODO: figure out how to access to secret key safely
-    Ed25519.signature(message, base58_decode(seckey)) |> Base.encode64()
+    :enacl.sign_detached(message, base58_decode(seckey)) |> Base.encode64()
   end
 
   @doc """
-      Verified a signature with the original message and its corresponded public key
+  Verify signature
 
-      Example: (pub and signature are based on the example of function sign_message_with_ed25519)
-      iex(4)>Crypto.verify_signature(signature, "Elixir is the best language", pub)
-      true
+  Example: Based on the previous simulation in digital_signature(message, seckey) example
+  ex(4)> signature = Crypto.verify_digital_signature(signature, message, pubkey)
+  true
   """
-  def verify_signature(signature, message, pubkey) do
-    Ed25519.valid_signature?(Base.decode64!(signature), message, base58_decode(pubkey))
+
+  def verify_digital_signature(signature, message, pubkey) do
+    :enacl.sign_verify_detached(Base.decode64!(signature), message, base58_decode(pubkey))
   end
+
 end

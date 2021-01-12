@@ -15,8 +15,8 @@ defmodule CryptoTest do
 
     test "test signature function" do
       message = "Gimme 1000gt"
-      {seckey, pubkey} = Crypto.gen_ed25519_keypair_with_base58()
-      signature = Crypto.sign_message_with_ed25519(message, seckey)
-      assert signature = Crypto.verify_signature(signature, message, pubkey)
+      {seckey, pubkey} = Crypto.generate_keypair()
+      signature = Crypto.digital_signature(message, seckey)
+      assert signature = Crypto.verify_digital_signature(signature, message, pubkey)
     end
 end
