@@ -1,7 +1,6 @@
 defmodule Block.Validation.Local.VersionTest do
   use ExUnit.Case
   doctest Block.Validation.Local.Version
-  doctest Block.Validation.Local.Parameters
 
   @block_with_version_10 %{
     "version" => 10,
@@ -72,7 +71,7 @@ defmodule Block.Validation.Local.VersionTest do
   @block_with_version_12 %{
     "version" => 12,
     "nonce" => 10000000000667,
-    "number" => 0,
+    "number" => 600000,
     "powMin" => 45,
     "time" => 1595414863,
     "medianTime" => 1595413173,
@@ -86,7 +85,7 @@ defmodule Block.Validation.Local.VersionTest do
     "issuer" => "5B8iMAzq1dNmFe3ZxFTBQkqhq4fsztg1gZvxHXCk1XYH",
     "signature" => "4DLDlVXVDhJOcrnFdA60YMQ49euqmTY2ZJWEj2bd/PHYjfzJI3lqYkvAY8ew20fDYJtAwZvbtKHDlF+XysnRCQ==",
     "hash" => "0018186DE87C6FE4C6DBB8EB0C9B0650E9A8447B6A704957FE0220A855F49A93",
-    "parameters" => "egfs<egezsrg",
+    "parameters" => "",
     "previousHash" => "000CA1650E05059F37C886ACEC28AA71F125CE5DC5F7AE77C107BF52DBFB747F",
     "previousIssuer" => "39YyHCMQNmXY7NkPCXXfzpV1vYct4GBxwgfyd4d72HmB",
     "inner_hash" => "B654D111FCE6EB76ADA91ADB21B0E80A1F68A1B558C962378C725DF8E1B3EE81",
@@ -98,95 +97,15 @@ defmodule Block.Validation.Local.VersionTest do
     "revoked" => [],
     "excluded" => [],
     "certifications" => [],
-    "transactions" => [
-      %{
-        "version" => 10,
-        "blockstamp" => "7-C5B4179C5D65DB6AF1D24CD6859D88C3B4A4A9DAD6A35AF32DA74D877816C0BB",
-        "locktime" => 0,
-        "issuers" => ["DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV"],
-        "inputs" => ["1200 =>0 =>T =>E14CB52BD5C9A4B9CA8D3007EABBB5B77E1F58D4598CC44D022AE398E4C8F90D =>0"],
-        "unlocks" => ["0 =>XHX(1872767826647264)"],
-        "outputs" => ["1200 =>0 =>SIG(DKpQPUL4ckzXYdnDRvCRKAm1gNvSdmAXnTrJZ7LvM5Qo)"],
-        "comments" => ["okk"],
-        "signatures" => ["+KUFhYV5wpPbahhRtGcFVfWcjTh/Rl7K68i/ESKmrwf3rnFLpl4atVpzyvmsOsliz5wDjWMiG9wTYMDjRj4XDQ=="],
-        "comment" => "okk",
-        "currency" => "duniter_unit_test_currency",
-        "block_number" => 9,
-        "time" => 1489679935
-      }
-    ]
-  }
-
-  @transaction_with_version_9 %{
-    "version" => 10,
-    "nonce" => 200000000001,
-    "number" => 11,
-    "powMin" => 1,
-    "time" => 1489679935,
-    "medianTime" => 1489679935,
-    "membersCount" => 2,
-    "monetaryMass" => 4800,
-    "unitbase" => 0,
-    "issuersCount" => 1,
-    "issuersFrame" => 6,
-    "issuersFrameVar" => 0,
-    "len" => 8,
-    "currency" => "duniter_unit_test_currency",
-    "issuer" => "DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV",
-    "signature" => "OjWOEdPEpzWKFqxdIcSdk0FUcsXk3vAu9rcmucktgF1L8CdSh09Te4Aek8MCQ8vE7no+EJkL7QR6bv2tI8e/Dw==",
-    "hash" => "7F2151494087FA237E1E793EA8C2D015B84A11492CAA282A44DC99DBB1DBAAC8",
-    "parameters" => "",
-    "previousHash" => "3524C70AAA67384D9627B0E79D2642DBB0402EF86B6205EC6AFC1EA20C6B5D92",
-    "previousIssuer" => "DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV",
-    "inner_hash" => "03E45A377A6BCDAA8AC8150A60EFB668C85068A7180C7524818CE331EFEC9ABC",
-    "dividend" => nil,
-    "identities" => [],
-    "joiners" => [],
-    "actives" => [],
-    "leavers" => [],
-    "revoked" => [],
-    "excluded" => [],
-    "certifications" => [],
-    "transactions" => [
-      %{
-        "version" => 9,
-        "blockstamp" => "10-3524C70AAA67384D9627B0E79D2642DBB0402EF86B6205EC6AFC1EA20C6B5D92",
-        "locktime" => 0,
-        "issuers" => [
-          "DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV"
-        ],
-        "inputs" => [
-          "1200 =>0 =>T =>1F3F5DCAA471431680CD7F5A59D3D22A1A1091810FC72D8BDE2A40883CD6D48D =>0"
-        ],
-        "unlocks" => [
-          "0 =>SIG(0)"
-        ],
-        "outputs" => [
-          "1200 =>0 =>(XHX(8AFC8DF633FC158F9DB4864ABED696C1AA0FE5D617A7B5F7AB8DE7CA2EFCD4CB) && SIG(DKpQPUL4ckzXYdnDRvCRKAm1gNvSdmAXnTrJZ7LvM5Qo)) || (SIG(DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV) && SIG(DKpQPUL4ckzXYdnDRvCRKAm1gNvSdmAXnTrJZ7LvM5Qo))"
-        ],
-        "comments" => [
-          "cross1"
-        ],
-        "signatures" => [
-          "qu+yUzggT+Zt6v4LpgVSYnJkTQRMUAmX4EOfsCnaVNROlv3QhhErynq+WGLNUbGSBnGtrwgA4VfjcZ0eTTL2CA=="
-        ],
-        "comment" => "cross1",
-        "currency" => "duniter_unit_test_currency",
-        "block_number" => 11,
-        "time" => 1489679935
-      }
-    ]
+    "transactions" => [],
+    "raw" => "Version: 12\nType: Block\nCurrency: g1-test\nNumber: 600000\nPoWMin: 45\nTime: 1595414863\nMedianTime: 1595413173\nUnitBase: 3\nIssuer: 5B8iMAzq1dNmFe3ZxFTBQkqhq4fsztg1gZvxHXCk1XYH\nIssuersFrame: 21\nIssuersFrameVar: 0\nDifferentIssuersCount: 4\nPreviousHash: 000CA1650E05059F37C886ACEC28AA71F125CE5DC5F7AE77C107BF52DBFB747F\nPreviousIssuer: 39YyHCMQNmXY7NkPCXXfzpV1vYct4GBxwgfyd4d72HmB\nMembersCount: 8\nIdentities:\nJoiners:\nActives:\nLeavers:\nRevoked:\nExcluded:\nCertifications:\nTransactions:\nInnerHash: B654D111FCE6EB76ADA91ADB21B0E80A1F68A1B558C962378C725DF8E1B3EE81\nNonce: 10000000000667\n"
   }
 
   alias Block.Validation.Local.Version, as: Version
-  alias Block.Validation.Local.Parameters, as: Parameters
 
   test "validates block version greater than 10" do
+    assert Version.valid(@block_with_version_10)
     assert Version.valid(@block_with_version_11)
-  end
-  test "Validates block parameters" do
-    assert Parameters.valid(@block_with_version_11)
-
-    assert Parameters.valid(@block_with_version_12)
+    assert Version.valid(@block_with_version_12)
   end
 end
