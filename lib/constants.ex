@@ -1,17 +1,10 @@
 defmodule Constants do
-<<<<<<< HEAD
   def medianTime, do: 10
   def msValidity, do: 10
   def msPeriod, do: 10
   def sigValidity, do: 10
   def sigPeriod, do: 10
   def sigReplay, do: 10
-=======
-  @moduledoc """
-  A module contains all constants
-
-  """
-
   def free_member_room, do: "[0-9]+"
   def free_mirror_room, do: "[0-9]+"
   def software, do: "[A-Za-z-_]+"
@@ -42,6 +35,4 @@ defmodule Constants do
   def ws2p_head_regexp, do: "HEAD:?(?:[0-9]+)?"
   def empty_hash, do: "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
   def endpoint_flags_regexp, do: "[S]"
-
->>>>>>> 056f70f (added a heads validation file and a constants file)
 end
