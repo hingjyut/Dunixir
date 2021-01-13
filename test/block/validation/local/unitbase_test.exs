@@ -2,10 +2,10 @@ defmodule Block.Validation.Local.UnitBaseTest do
   use ExUnit.Case
   doctest Block.Validation.Local.UnitBase
 
-  @block_with_version_10 %{
+  @block_with_valid_unitbase_1 %{
     "version" => 10,
     "nonce" => 10000000042832,
-    "number" => 100000,
+    "number" => 0,
     "powMin" => 68,
     "time" => 1512784574,
     "medianTime" => 1512782695,
@@ -35,7 +35,7 @@ defmodule Block.Validation.Local.UnitBaseTest do
     "raw" => "Version: 10\nType: Block\nCurrency: g1-test\nNumber: 100000\nPoWMin: 68\nTime: 1512784574\nMedianTime: 1512782695\nUnitBase: 0\nIssuer: 2RbXrLkmtgWMcis8NWhPvM7BAGT4xLK5mFRkHiYi2Vc7\nIssuersFrame: 26\nIssuersFrameVar: 0\nDifferentIssuersCount: 5\nPreviousHash: 0000249481FF9D6407A2716B4144CA0A3F1AACAF547974688D773851807DEC4F\nPreviousIssuer: 68jjsRrrX6hzs4z6eK2A2MUGLdKPfysFd1n3DYfHr7X9\nMembersCount: 28\nIdentities:\nJoiners:\nActives:\nLeavers:\nRevoked:\nExcluded:\nCertifications:\nTransactions:\nInnerHash: FEC411D5138F0E85AD8FA5A4916DD167A123EEED9FE0A440FFC6A0C11350D551\nNonce: 10000000042832\n"
   }
 
-  @block_with_version_11 %{
+  @block_with_valid_unitbase_2 %{
     "version" => 11,
     "nonce" => 10100000000648,
     "number" => 300000,
@@ -68,16 +68,16 @@ defmodule Block.Validation.Local.UnitBaseTest do
     "raw" => "Version: 11\nType: Block\nCurrency: g1-test\nNumber: 300000\nPoWMin: 60\nTime: 1546252844\nMedianTime: 1546248548\nUnitBase: 1\nIssuer: 5B8iMAzq1dNmFe3ZxFTBQkqhq4fsztg1gZvxHXCk1XYH\nIssuersFrame: 16\nIssuersFrameVar: 0\nDifferentIssuersCount: 3\nPreviousHash: 0002375F02CCF23082A944C3A02CDB7899502114EA2731C681D3D39008B29D65\nPreviousIssuer: CaE9dyy4GLsZ1QoVziDXUDbxFyxM82PPPmTjYdjf2K7h\nMembersCount: 17\nIdentities:\nJoiners:\nActives:\nLeavers:\nRevoked:\nExcluded:\nCertifications:\nTransactions:\nInnerHash: 87A0FE87B38BE8F5979131EA8564B944672CDFF8D5D228EEB733A7841ACB123F\nNonce: 10100000000648\n"
   }
 
-  @block_with_version_12 %{
+  @block_with_invalid_unitbase_1 %{
     "version" => 10,
     "nonce" => 10000000000667,
-    "number" => 600000,
+    "number" => 0,
     "powMin" => 45,
     "time" => 1595414863,
     "medianTime" => 1595413173,
     "membersCount" => 8,
     "monetaryMass" => 2213628864,
-    "unitbase" => 3,
+    "unitbase" => 309890,
     "issuersCount" => 4,
     "issuersFrame" => 21,
     "issuersFrameVar" => 0,
@@ -104,8 +104,8 @@ defmodule Block.Validation.Local.UnitBaseTest do
   alias Block.Validation.Local.UnitBase, as: UnitBase
 
   test "validates block unitbase isn't 0 when block nb is 0" do
-    assert UnitBase.valid(@block_with_version_10)
-    assert UnitBase.valid(@block_with_version_11)
-    assert UnitBase.valid(@block_with_version_12)
+    assert UnitBase.valid(@block_with_valid_unitbase_1)
+    assert UnitBase.valid(@block_with_valid_unitbase_2)
+    refute UnitBase.valid(@block_with_invalid_unitbase_1)
   end
 end
