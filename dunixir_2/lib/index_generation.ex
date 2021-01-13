@@ -1,10 +1,10 @@
-defmodule Document.Processor.ETS do
+defmodule Index.Generation do
 
   def add_identity(blockstamp, local_iindex,local_mindex,%{"pub" => pub,
   "block_uid" => block_uid,
   "user_id"=> user_id}) do
 
-    :ok = Local.ETS.I.Index.insert(local_iindex,%{op: "CREATE",
+    :ok = Local.IIndex.insert(local_iindex,%{op: "CREATE",
     uid: user_id,
     pub: pub,
     created_on: block_uid,
@@ -12,7 +12,7 @@ defmodule Document.Processor.ETS do
     member: true,
     wasMember: true,
     kick: false})
-    :ok = Local.ETS.M.Index.insert(local_mindex,%{op: "CREATE",
+    :ok = Local.MIndex.insert(local_mindex,%{op: "CREATE",
     pub: pub,
     created_on: block_uid,
     written_on: blockstamp,
@@ -37,7 +37,7 @@ defmodule Document.Processor.ETS do
     match_create = !(:ets.match(local_iindex,{:"$1",%{op: "CREATE", pub: pub}}) == [])
     case match_create do
       false ->
-        :ok = Local.ETS.I.Index.insert(local_iindex, %{op: "UPDATE",
+        :ok = Local.IIndex.insert(local_iindex, %{op: "UPDATE",
         pub: pub,
         uid: nil,
         created_on: nil,
@@ -45,7 +45,7 @@ defmodule Document.Processor.ETS do
         member: true,
         wasMember: nil,
         kick: nil})
-        :ok = Local.ETS.M.Index.insert(local_mindex,%{op: "UPDATE",
+        :ok = Local.MIndex.insert(local_mindex,%{op: "UPDATE",
         pub: pub,
         created_on: m_block_uid, #ambiguité de la spec (m ou i ?)
         written_on: blockstamp,
@@ -69,7 +69,7 @@ defmodule Document.Processor.ETS do
  "m_block_uid" => m_block_uid,
   "i_block_uid" => _i_block_uid,
   "user_id" => _user_id}) do
-    :ok = Local.ETS.M.Index.insert(local_mindex,%{op: "UPDATE",
+    :ok = Local.MIndex.insert(local_mindex,%{op: "UPDATE",
     pub: pub,
     created_on: m_block_uid, #ambiguité de la spec (m ou i ?)
     written_on: blockstamp,
@@ -89,7 +89,7 @@ defmodule Document.Processor.ETS do
   "m_block_uid" => m_block_uid,
   "i_block_uid" => _i_block_uid,
   "user_id" => _user_id}) do
-    :ok = Local.ETS.M.Index.insert(local_mindex,%{op: "UPDATE",
+    :ok = Local.MIndex.insert(local_mindex,%{op: "UPDATE",
     pub: pub,
     created_on: m_block_uid, #ambiguité de la spec (m ou i ?)
     written_on: blockstamp,
@@ -107,7 +107,7 @@ defmodule Document.Processor.ETS do
 
   def add_revoked(blockstamp,local_mindex,%{"pub"=>pub,
   "sig"=>sig}) do
-    :ok= Local.ETS.M.Index.insert(local_mindex,%{op: "UPDATE",
+    :ok= Local.MIndex.insert(local_mindex,%{op: "UPDATE",
     pub: pub,
     created_on: nil, #ambiguité de la spec (BLOCK_UID???)
     written_on: blockstamp,
@@ -125,7 +125,7 @@ defmodule Document.Processor.ETS do
   end
 
   def add_excluded(blockstamp,local_iindex,%{"pub"=>pub }) do
-    :ok = Local.ETS.I.Index.insert(local_iindex, %{op: "UPDATE",
+    :ok = Local.IIndex.insert(local_iindex, %{op: "UPDATE",
     uid: nil,
     pub: pub,
     created_on: nil,
@@ -140,7 +140,7 @@ defmodule Document.Processor.ETS do
   "to" => to,
   "block_id" => block_id,
   "sig" => sig}) do
-    :ok = Local.ETS.C.Index.insert(local_cindex,%{op: "CREATE",
+    :ok = Local.CIndex.insert(local_cindex,%{op: "CREATE",
     issuer: from,
     receiver: to,
     created_on: block_id,
@@ -160,7 +160,7 @@ defmodule Document.Processor.ETS do
   "tx_blockstamp" => tx_blockstamp,
   "input_amount" => input_amount,
   "input_base" => input_base}) do
-    :ok = Local.ETS.S.Index.insert(local_sindex, %{op: "UPDATE",
+    :ok = Local.SIndex.insert(local_sindex, %{op: "UPDATE",
     tx: tx_hash,
     identifier: input_identifier,
     pos: input_index,
@@ -181,7 +181,7 @@ defmodule Document.Processor.ETS do
   "output_base" => output_base,
   "locktime" => locktime,
   "conditions" => conditions}) do
-    :ok = Local.ETS.S.Index.insert(local_sindex, %{op: "CREATE",
+    :ok = Local.SIndex.insert(local_sindex, %{op: "CREATE",
     tx: tx_hash,
     identifier: tx_hash,
     pos: output_index,
