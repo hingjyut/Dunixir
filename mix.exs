@@ -5,7 +5,7 @@ defmodule Dunixir.MixProject do
     [
       app: :dunixir,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -14,7 +14,7 @@ defmodule Dunixir.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:crypto, :inets, :logger],
+      extra_applications: [:crypto, :logger, :inets],
       mod: {Dunixir.Application, []}
     ]
   end
@@ -26,7 +26,8 @@ defmodule Dunixir.MixProject do
       {:ed25519, "~> 1.3"},
       {:scrypt_elixir, "~> 0.1.0"},
       {:enacl, "~> 1.1"},
-      {:ymlr, "~> 1.0"}
+      {:ymlr, "~> 1.0"},
+      {:ex2ms, "~> 1.0"}
     ]
   end
 end

@@ -5,4 +5,5 @@
   "enacl": {:hex, :enacl, "1.1.1", "f65dc64d9bff2d8a534cb77aef14da5e7a2fa148987d87856f79a4745c9c2627", [:rebar3], [], "hexpm", "60d329ac3976008f774e21aba254671104976d61a792287615bb26816f09ea0f"},
   "scrypt_elixir": {:hex, :scrypt_elixir, "0.1.0", "c603bd2fc5816ac41e2dd3397719afde1adb687e4b79ced71959fbb92e6aa24e", [:make, :mix], [{:elixir_make, "~> 0.4", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm", "b9536accc361e6ea6b284eb8b9795642e2660a63ec232d5ea6e83ca632961037"},
   "ymlr": {:hex, :ymlr, "1.0.1", "1e0057b5fd157f3053e05af4e8a94e579c69969d919e219723bc35dc827ed9d4", [:mix], [], "hexpm", "b4d5f25b34dca432760ae5f96496b4398a31155df3c4de1ef4f2e60e3da7fd5f"},
+  "ex2ms": {:hex, :ex2ms, "1.6.0", "f39bbd9ff1b0f27b3f707bab2d167066dd8965e7df1149b962d94c74615d0e09", [:mix], [], "hexpm", "0d1ab5e08421af5cd69146efb408dbb1ff77f38a2f4df5f086f2512dc8cf65bf"},
 }

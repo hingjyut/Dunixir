@@ -25,4 +25,5 @@ dunixir-*.tar
 # Ignore Elixir Language Server files (VS Code extension)
 /.elixir_ls/
 
-
+# Temporary files for e.g. tests
+/tmp
