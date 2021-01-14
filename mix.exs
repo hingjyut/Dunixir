@@ -33,6 +33,7 @@ defmodule Dunixir.MixProject do
       {:plug, "~> 1.5"},
       {:poison, "~> 3.1"},
       {:plug_cowboy, "~> 1.0"},
+      {:json, "~> 1.4"}
     ]
   end
 end

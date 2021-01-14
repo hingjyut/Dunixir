@@ -1,4 +1,4 @@
-defmodule CreateBDD do 
+defmodule BDD do 
 
     require Logger
     
@@ -39,7 +39,8 @@ defmodule CreateBDD do
     end
 
     @doc """
-    Insert in the block dets table the n fisrt block of the bockchain, get throught an http request    """    
+    Insert in the block dets table the n fisrt block of the bockchain, get throught an http request    
+    """    
     def fill_with_block(n) do
         {:ok , :block} = :dets.open_file(:block , [{:file, 'data/block'} , {:type, :set}])
         case :httpc.request(:get, {@base_url ++ to_charlist(n) ++ '/0', []}, [], []) do
@@ -54,6 +55,14 @@ defmodule CreateBDD do
                 end
             end
     end 
+end
 
-
+defmodule BDD.Create do 
+    use GenServer
+    def start_link(arg) do GenServer.start_link(__MODULE__,arg,name: __MODULE__) end
+    def init(_) do
+        BDD.create_if_not_created
+        BDD.fill_with_block(50)
+        {:ok , nil}
+    end
 end
