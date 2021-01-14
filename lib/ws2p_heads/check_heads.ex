@@ -1,7 +1,5 @@
 defmodule WS2P.CheckHeads do
 
-  require Logger
-
   def api_regexp() do
     "WS2P(" <> Constants.ws2p_private_prefix_regexp() <>
     ")?(" <> Constants.ws2p_public_prefix_regexp() <> ")?"
