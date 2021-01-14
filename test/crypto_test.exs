@@ -17,6 +17,6 @@ defmodule CryptoTest do
       message = "Gimme 1000gt"
       {seckey, pubkey} = Crypto.generate_keypair()
       signature = Crypto.digital_signature(message, seckey)
-      assert signature = Crypto.verify_digital_signature(signature, message, pubkey)
+      assert Crypto.verify_digital_signature(signature, message, pubkey)
     end
 end

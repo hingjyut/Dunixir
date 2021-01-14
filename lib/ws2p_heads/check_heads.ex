@@ -18,41 +18,25 @@ defmodule WS2P.CheckHeads do
   end
 
   def check_head_v0(%{message: message, sig: sig}) do
-    [api, _head, _version, pubkey, blockstamp] = String.split(message, ":")
     completed_regexp = head_v0_regexp() <> "(?::)?(.*)"
     is_message_valid = Regex.compile!(completed_regexp) |> Regex.match?(message)
-    is_sig_valid = Crypto.verify_digital_signature(blockstamp, api, pubkey)
-    if is_message_valid == false or is_sig_valid == false do
-      Logger.error("Current headv0 {message: #{message}, sig: #{sig}} is unformed")
-    end
+    is_sig_valid = Regex.compile!(Constants.signature_regexp()) |> Regex.match?(sig)
     is_message_valid and is_sig_valid
   end
 
 
   def check_head_v1(%{message: message, sig: sig}) do
-    [api, _head, _version, pubkey, blockstamp, _ws2p_id, _software, _soft_version, _pow_prefix] =
-      String.split(message, ":")
     completed_regexp = head_v0_regexp() <> ":" <> rest_head_v1_regexpr() <> "(?::)?(.*)"
     is_message_valid = Regex.compile!(completed_regexp) |> Regex.match?(message)
-    is_sig_valid = Crypto.verify_digital_signature(blockstamp, api, pubkey)
-    if is_message_valid == false or is_sig_valid == false do
-      Logger.error("Current headv0 {message: #{message}, sig: #{sig}} is unformed")
-    end
+    is_sig_valid = Regex.compile!(Constants.signature_regexp()) |> Regex.match?(sig)
     is_message_valid and is_sig_valid
   end
 
   def check_head_v2(%{messageV2: message, sigV2: sig}) do
-    [api, _head, _version, pubkey, blockstamp, _ws2p_id, _software, _soft_version,
-      _pow_prefix, _free_member_room, _free_mirror_room] = String.split(message, ":")
-
     completed_regexp = head_v0_regexp() <> ":" <> rest_head_v1_regexpr() <> ":"
       <> Constants.free_member_room() <> ":" <> Constants.free_mirror_room() <>"(?::)?(.*)"
-
     is_message_valid = Regex.compile!(completed_regexp) |> Regex.match?(message)
-    is_sig_valid = Crypto.verify_digital_signature(blockstamp, api, pubkey)
-    if is_message_valid == false or is_sig_valid == false do
-      Logger.error("Current headv0 {message: #{message}, sig: #{sig}} is unformed")
-    end
+    is_sig_valid = Regex.compile!(Constants.signature_regexp()) |> Regex.match?(sig)
     is_message_valid and is_sig_valid
   end
 
