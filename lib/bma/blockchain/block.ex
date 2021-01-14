@@ -2,7 +2,6 @@ defmodule BMA.Blockchain.Block do
 
     require Logger
 
-
     def get(number) do
         {n, _} = :string.to_integer(number)
         {:ok, :block} = :dets.open_file(:block , [{:file, 'data/block'} , {:type, :set}])
