@@ -16,6 +16,9 @@ defmodule BDD do
             :dets.open_file(:global_cindex , [{:file, 'data/global_cindex'} , {:type, :set}])
             :dets.open_file(:global_sindex , [{:file, 'data/global_sindex'} , {:type, :set}])
             :dets.open_file(:block , [{:file, 'data/block'} , {:type, :set}])
+            :dets.open_file(:wallet , [{:file, 'data/wallet'} , {:type, :set}])
+            :dets.open_file(:meta , [{:file, 'data/meta'} , {:type, :set}])
+            :dets.open_file(:peer , [{:file, 'data/peer'} , {:type, :set}])
         else 
             if not File.exists?('data/block') do
                 :dets.open_file(:block , [{:file, 'data/block'} , {:type, :set}])
@@ -34,6 +37,15 @@ defmodule BDD do
             end
             if not File.exists?('data/global_mindex') do
                 :dets.open_file(:global_mindex , [{:file, 'data/global_mindex'} , {:type, :set}])
+            end
+            if not File.exists?('data/meta') do
+                :dets.open_file(:meta , [{:file, 'data/meta'} , {:type, :set}])
+            end
+            if not File.exists?('data/wallet') do
+                :dets.open_file(:wallet , [{:file, 'data/wallet'} , {:type, :set}])
+            end
+            if not File.exists?('data/peer') do
+                :dets.open_file(:peer , [{:file, 'data/peer'} , {:type, :set}])
             end
         end
     end
