@@ -23,5 +23,4 @@ defmodule BMA.Blockchain.With.Newcomers do
             }})
         end
 
-    end
 end
