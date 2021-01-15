@@ -3,8 +3,8 @@ defmodule BMA.Node.Summary do
     Poison.encode!(
       %{duniter:
         %{software: "duniter",
-        version: Constants.version,
-        forkWindowSize: Constants.forkWindowSize
+        version: Constant.version,
+        forkWindowSize: Constant.forkWindowSize
         }})
     end
 end
