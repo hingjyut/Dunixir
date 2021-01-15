@@ -1,30 +1,26 @@
 defmodule BMA.Blockchain.With.Newcomers do
+
+    @doc"""
+    Get a list of block ID of blocks with non-empty identitis
+    """
     def get do
         {:ok, blocks} = :dets.open_file(:block , [{:file, 'data/block'} , {:type, :set}])
         first_block_id = :dets.first(blocks)
-        list = get_list([], first_block_id, blocks)
+        list = :dets.traverse(
+            blocks,
+            fn{_, block} ->
+                if (block["identities"] != []) do
+                    {:continue, block["number"]}
+                else
+                    :continue
+                end
+            end
+        )
+
         Poison.encode!(
             %{result:
             %{blocks: list
             }})
-        end
-
-    @doc """
-    Get a list of block id of blocks with non-empty identities
-    """
-    def get_list(list, id, blocks) do
-        case id do
-            :"$end_of_table" -> list
-            _ ->
-                [{_, block}] = :dets.lookup(blocks, id)
-                id = :dets.next(blocks, id)
-                case block["identities"] do
-                    [] ->
-                        get_list(list, id, blocks)
-                    _ ->
-                        list = list ++ block["number"]
-                        get_list(list, id, blocks)
-                end
         end
 
     end
