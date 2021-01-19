@@ -27,7 +27,9 @@ defmodule Dunixir.MixProject do
       {:scrypt_elixir, "~> 0.1.0"},
       {:enacl, "~> 1.1"},
       {:ymlr, "~> 1.0"},
-      {:ex2ms, "~> 1.0"}
+      {:ex2ms, "~> 1.0"},
+      {:jason, "~> 1.2"},
+      {:elixir_uuid, "~> 1.2"}
     ]
   end
 end
