@@ -5,6 +5,7 @@ defmodule Block.Validation.Local.TxSigOrdered do
 
   @doc """
   Validates a list of transactions
+  inputs : list of transactions
   returns boolean
   """
   def _valid_tx([]) do
@@ -16,6 +17,7 @@ defmodule Block.Validation.Local.TxSigOrdered do
 
   @doc """
   Validates a list of signatures
+  inputs : list of signatures, transaction raw, list of issuers' public keys
   returns boolean
   """
   def _valid_signatures([], _raw, []) do
@@ -33,6 +35,7 @@ defmodule Block.Validation.Local.TxSigOrdered do
 
   @doc """
   Returns the raw corresponding to the transaction
+  inputs : transaction
   returns string
   """
   def _get_raw(tx) do
@@ -54,6 +57,7 @@ defmodule Block.Validation.Local.TxSigOrdered do
 
   @doc """
   Generates a string from the list of elements
+  inputs : list of elements (string) to add
   returns string
   """
   def _add_list([]) do
