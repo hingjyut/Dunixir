@@ -1,7 +1,7 @@
 defmodule Block.Validation.Local.TransactionInputTest do
   use ExUnit.Case
 
-  doctest Block.Validation.Local.TransacInput
+  doctest Block.Validation.Local.TransactionInput
 
 
   @block_with_input_1 %{
@@ -147,7 +147,7 @@ defmodule Block.Validation.Local.TransactionInputTest do
   }
 
 
-  alias Block.Validation.Local.TransacInput, as: TxInput
+  alias Block.Validation.Local.TransactionInput, as: TxInput
 
   test "Validates block input" do
     assert TxInput.valid(@block_with_input_1)
