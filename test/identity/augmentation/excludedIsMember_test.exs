@@ -38,6 +38,10 @@ defmodule Identity.Augmentation.ExcludedIsMember do
     [{"pub_tata",a_excl}] = :ets.lookup(local_iindex_a,"pub_tata")
     [{"pub_tata",b_excl}] = :ets.lookup(local_iindex_b,"pub_tata")
 
+    :dets.close(global_iindex_a)
+    :dets.close(global_iindex_b)
+    :file.delete("global_iindex_a")
+    :file.delete("global_iindex_b")
 
     {:ok,id_a: a_id.excludedIsMember,excl_a: a_excl.excludedIsMember, id_b: b_id.excludedIsMember, excl_b: b_excl.excludedIsMember}
   end
