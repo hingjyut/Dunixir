@@ -13,9 +13,9 @@ defmodule Index.Augmentation do
       if entry.member != false do
         :ets.insert(local_iindex,{key,Map.merge(entry,%{excludedIsMember: true})})
       else
-        list_pub = :dets.match(global_iindex,{:"$1",%{pub: entry.pub, member: :"$2"}})
+        list_pub = :dets.match(global_iindex,{:_,%{pub: entry.pub, member: :"$2"}})
         excludedIsMember = is_nil(Enum.find_value(list_pub, fn elt ->
-          [_pub,member] = elt
+          [member] = elt
           !member
         end))
         :ets.insert(local_iindex,{key,Map.merge(entry,%{excludedIsMember: excludedIsMember})})
