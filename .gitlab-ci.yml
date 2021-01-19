@@ -4,6 +4,7 @@ before_script:
   - |
     export HTTP_PROXY="http://172.17.0.1:3128"
     export HTTPS_PROXY="http://172.17.0.1:3128"
+    apt-get update && apt-get install -y libsodium-dev
     mix local.rebar --force
     mix local.hex --force
     mix deps.get --only test
