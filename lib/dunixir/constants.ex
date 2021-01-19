@@ -1,4 +1,4 @@
-defmodule Constant do
+defmodule Constants do
 
   def version, do: "1.0"
   def forkWindowSize, do: 10
