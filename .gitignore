@@ -27,3 +27,6 @@ dunixir-*.tar
 
 # Temporary files for e.g. tests
 /tmp
+
+#data
+/data
