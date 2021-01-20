@@ -28,6 +28,11 @@ defmodule Identity.Augmentation.PubUnique do
     [{"pub_toto",a}] = :ets.lookup(local_iindex_a,"pub_toto")
     [{"pub_toto",b}] = :ets.lookup(local_iindex_b,"pub_toto")
 
+    :dets.close(global_iindex_a)
+    :file.delete("global_iindex_a")
+    :dets.close(global_iindex_b)
+    :file.delete("global_iindex_b")
+
     {:ok,pub_unique_a: a.pubUnique, pub_unique_b: b.pubUnique}
   end
 
