@@ -29,7 +29,7 @@ defmodule Identity.Augmentation.MembersCount do
     [{_key, head}] = :ets.lookup(local_bindex,key)
 
     :dets.close(global_bindex)
-    :file.delete("global_bindex")
+    :file.delete("test/global_bindex")
 
     IO.puts(head.membersCount)
     {:ok, membersCount: head.membersCount}
