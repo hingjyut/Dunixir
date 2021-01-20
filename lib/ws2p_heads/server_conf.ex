@@ -39,3 +39,22 @@ defmodule Server.Conf.Keypair do
   end
 
 end
+
+defmodule Server.Conf.WS2PID do
+  use GenServer
+  #TODO: generate ws2pid when we synchronize a node, then put ws2p id into db
+  def init(_init) do
+    #TODO: read ws2pid from db
+    ws2pid = UUID.uuid4() |> String.split("-") |> List.first()
+    {:ok, ws2pid}
+  end
+
+  def start_link() do
+    GenServer.start_link(__MODULE__, [],name: {:via, Registry, {WS2P.HeadCache.Registry, :ws2pid}})
+  end
+
+  def handle_call({:get_ws2pid}, _from, ws2pid) do
+    {:reply, ws2pid, ws2pid}
+  end
+
+end
