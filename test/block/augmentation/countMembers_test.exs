@@ -20,8 +20,8 @@ defmodule Identity.Augmentation.MembersCount do
 
     :ets.insert(local_bindex, {1, %{number: 1}})
 
-    {:ok, global_bindex} = :dets.open_file(:global_bindex, [type: :set])
-    :dets.insert(:global_bindex, {0, %{number: 0, membersCount: 3}})
+    {:ok, global_bindex} = :dets.open_file(:"test/global_bindex", [type: :set])
+    :dets.insert(global_bindex, {0, %{number: 0, membersCount: 3}})
 
     Index.Augmentation.BIndex.membersCount(local_iindex, global_bindex, local_bindex)
 
@@ -29,7 +29,7 @@ defmodule Identity.Augmentation.MembersCount do
     [{_key, head}] = :ets.lookup(local_bindex,key)
 
     :dets.close(global_bindex)
-    :file.delete("global_bindex")
+    :file.delete("test/global_bindex")
     IO.puts(head.membersCount)
     {:ok, membersCount: head.membersCount}
   end

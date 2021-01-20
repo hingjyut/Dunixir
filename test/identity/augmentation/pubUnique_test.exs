@@ -12,8 +12,8 @@ defmodule Identity.Augmentation.PubUnique do
     Index.Generation.add_identity("blockstamp_test", local_iindex,local_mindex,%{"pub" => "pub_tata",
     "block_uid" => "block_uid_test",
     "user_id"=> "user_id_tata"})
-    {:ok, global_iindex} = :dets.open_file(:global_iindex, [type: :set])
-    :ets.to_dets(local_iindex,:global_iindex)
+    {:ok, global_iindex} = :dets.open_file(:"test/global_iindex", [type: :set])
+    :ets.to_dets(local_iindex,global_iindex)
 
     [{"pub_toto",elt}] = :dets.lookup(global_iindex,"pub_toto")
     :dets.delete(global_iindex,"pub_toto")
@@ -26,7 +26,7 @@ defmodule Identity.Augmentation.PubUnique do
     [{"pub_tata",tata}] = :ets.lookup(local_iindex,"pub_tata")
 
     :dets.close(global_iindex)
-    :file.delete("global_iindex")
+    :file.delete("test/global_iindex")
 
     {:ok,pub_unique_toto: toto.pubUnique, pub_unique_tata: tata.pubUnique}
   end
