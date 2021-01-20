@@ -25,7 +25,7 @@ defmodule Identity.Augmentation.MembersCount do
 
     Index.Augmentation.BIndex.membersCount(local_iindex, global_bindex, local_bindex)
 
-    key = :ets.next(local_bindex)
+    key = :ets.first(local_bindex)
     [{_key, head}] = :ets.lookup(local_bindex,key)
 
     :dets.close(global_bindex)
