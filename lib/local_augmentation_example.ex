@@ -25,6 +25,31 @@ defmodule Index.Augmentation do
   end
 
   defmodule BIndex do
+    def number(global_bindex, local_bindex) do
+      key = :ets.first(local_bindex)
+      [{key, head}] = :ets.lookup(local_bindex,key)
+      case :dets.lookup(global_bindex, :last_block) do
+        [] ->
+          :ets.insert(local_bindex,{key,Map.merge(head, %{number: 0})})
+          :dets.insert(global_bindex, {:last_block, 0})
+        _ ->
+          [{:last_block, last_block}] = :dets.lookup(global_bindex, :last_block)
+          :ets.insert(local_bindex,{key,Map.merge(head, %{number: last_block+1})})
+          :dets.insert(global_bindex, {:last_block, last_block+1})
+      end
+    end
+
+    def previousHash(global_bindex, local_bindex) do
+      key = :ets.first(local_bindex)
+      [{key, head}] = :ets.lookup(local_bindex,key)
+      if head.number > 0 do
+        [[previousHash]] = :dets.match(global_bindex, {:_, %{number: head.number-1, hash: :"$1"}})
+        :ets.insert(local_bindex, {key, Map.merge(head, %{previousHash: previousHash})})
+      else
+        :ets.insert(local_bindex, {key, Map.merge(head, %{previousHash: nil})})
+      end
+    end
+
     def membersCount(local_iindex, global_bindex, local_bindex) do
       key = :ets.first(local_bindex)
       [{key, head}] = :ets.lookup(local_bindex,key)
