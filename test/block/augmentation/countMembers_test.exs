@@ -30,6 +30,7 @@ defmodule Identity.Augmentation.MembersCount do
 
     :dets.close(global_bindex)
     :file.delete("global_bindex")
+
     IO.puts(head.membersCount)
     {:ok, membersCount: head.membersCount}
   end

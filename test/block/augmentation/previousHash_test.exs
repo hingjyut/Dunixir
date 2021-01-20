@@ -22,6 +22,9 @@ defmodule Block.Augmentation.PreviousHash do
     [{0, head}] = :ets.lookup(local_bindex, 0)
     previousHash1 = head.previousHash
 
+    :dets.close(global_bindex)
+    :file.delete("test/global_bindex")
+
     {:ok, previousHash0: previousHash0, previousHash1: previousHash1}
 
   end
