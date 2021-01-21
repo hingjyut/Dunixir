@@ -11,7 +11,7 @@ defmodule Local do
     wasMember: _wasMember,
     kick: _kick}) do
       # Unicity conditions
-      uid_dup =  !(:ets.match(local_iindex,{:"$1",%{uid: uid}}) == [])
+      uid_dup =  !(:ets.match(local_iindex,{:"$1",%{uid: uid}}) == []) && !is_nil(uid)
       pubkey_dup = !(:ets.match(local_iindex,{:"$1",%{pub: pub}}) == [])
       # Not nil conditions
       op_not_valid = !(op == "CREATE" || op == "UPDATE")
