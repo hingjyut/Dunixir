@@ -128,6 +128,7 @@ defmodule ServerHttp.Router do
   end
 
   get "blockchain/milestones" do
+
     json = BMA.Blockchain.Milestones.get
     send_resp(conn, 200, json)
   end
@@ -280,7 +281,7 @@ defmodule ServerHttp.Router do
 
   #I'm not sure about the last ones, more linked with ws2p
   get "ws/block" do
-    #TODO
+
     #TODO
   end
 
