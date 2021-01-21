@@ -105,8 +105,11 @@ defmodule ServerHttp.Router do
   end
 
   get "blockchain/blocks/:count/:from" do
-    json = BMA.Blockchain.Blocks.get(count,from)
-    send_resp(conn, 200, json)
+    case BMA.Blockchain.Blocks.get(count, from) do
+      {:ok, json} -> send_resp(conn, 200, json)
+      {:ko, json} -> send_resp(conn, 404, json)
+    end
+
   end
 
   get "blockchain/current/" do
@@ -125,7 +128,7 @@ defmodule ServerHttp.Router do
   end
 
   get "blockchain/milestones" do
-    #TODO #non mentioned in the doc
+    #TODO #non mentioned in the doc 
     json = BMA.Blockchain.Milestones.get
     send_resp(conn, 200, json)
   end
@@ -249,12 +252,12 @@ defmodule ServerHttp.Router do
   end
 
   get "tx/history/:pubkey/blocks/:from/:to" do
-    json = BMA.Tx.History.Blocks.get(pubkey,from,to)
+    json = BMA.Tx.History.Blocks.get(pubkey, from, to)
     send_resp(conn, 200, json)
   end
 
   get "tx/history/:pubkey/times/:from/:to" do
-    json = BMA.Tx.History.Times.get(pubkey,from,to)
+    json = BMA.Tx.History.Times.get(pubkey, from, to)
     send_resp(conn, 200, json)
   end
 
@@ -265,19 +268,19 @@ defmodule ServerHttp.Router do
 
   get "ud/history/:pubkey/blocks/:from/:to" do
     #TODO #non mentioned in the doc
-    json = BMA.Ud.History.Blocks.get(pubkey,from,to)
+    json = BMA.Ud.History.Blocks.get(pubkey, from, to)
     send_resp(conn, 200, json)
   end
 
   get "ud/history/:pubkey/times/:from/:to" do
     #TODO #non mentioned in the doc
-    json = BMA.Ud.History.Times.get(pubkey,from,to)
+    json = BMA.Ud.History.Times.get(pubkey, from, to)
     send_resp(conn, 200, json)
   end
 
   #I'm not sure about the last ones, more linked with ws2p
   get "ws/block" do
-    #TODO
+    #TODO 
   end
 
   get "ws/peer" do
