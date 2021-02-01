@@ -77,3 +77,16 @@ defmodule Index.Augmentation do
     end
   end
 end
+
+
+defmodule SIndex do
+
+  def checkUnitBase(local_sindex, :global_bindex, key) do
+    # Get the entry waiting to be verified
+    [{_key,entry}] = :ets.lookup(local_sindex,key)
+    # Get the block number of HEAD in global_bindex
+    [last_block: head_nb] = :dets.lookup(:global_bindex, :last_block)
+    # The entry's unitbase is valid only if it isn't bigger than block number of HEAD~1
+    entry.base <= head_nb - 1
+  end
+end
