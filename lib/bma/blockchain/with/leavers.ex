@@ -5,13 +5,13 @@ defmodule BMA.Blockchain.With.Leavers do
         result = result ++ :dets.traverse(
             :block,
             fn {_, value} ->
-              if(value["leavers"]) != []) do
+              if(value["leavers"] != []) do
                   {:continue, value["number"]}
               else
                   :continue
               end
             end
-                 )
+        )
         JSON.encode!([result: [blocks: result]])
     end
 

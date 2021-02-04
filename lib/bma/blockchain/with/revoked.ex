@@ -5,13 +5,13 @@ defmodule BMA.Blockchain.With.Revoked do
         result = result ++ :dets.traverse(
             :block,
             fn {_, value} ->
-              if(value["revoked"]) != []) do
+              if(value["revoked"] != []) do
                   {:continue, value["number"]}
               else
                   :continue
               end
             end
-                 )
+         )
         JSON.encode!([result: [blocks: result]])
     end
 
