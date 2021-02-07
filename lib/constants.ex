@@ -20,7 +20,7 @@ defmodule Constants do
       "):(" <>
       ws2pid_regexp() <>
       "):(" <>
-      software() <> "):(" <> software_version() <> ")(" <> zero_or_positive_int() <> ")$"
+      software() <> "):(" <> software_version() <> "):(" <> zero_or_positive_int() <> ")$"
   end
 
   def head_v2_regexp() do
