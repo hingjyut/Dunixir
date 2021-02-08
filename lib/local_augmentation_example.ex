@@ -62,6 +62,17 @@ defmodule Index.Augmentation do
       end
     end
 
+    def previousIssuer(global_bindex, local_bindex) do
+      key = :ets.first(local_bindex) #get the head key
+      [{key, head}] = :ets.lookup(local_bindex,key) #get the head content
+      if head.number > 0 do #recent bloc
+        [[previousIssuer]] = :dets.match(global_bindex, {:_, %{number: head.number-1, issuer: :"$1"}})#get head-1's issuer
+        :ets.insert(local_bindex, {key, Map.merge(head, %{previousIssuer: previousIssuer})})#add Previousissuer
+      else
+        :ets.insert(local_bindex, {key, Map.merge(head, %{previousIssuer: nil})})#PI is nil
+      end
+    end
+
     def membersCount(local_iindex, global_bindex, local_bindex) do
       key = :ets.first(local_bindex)
       [{key, head}] = :ets.lookup(local_bindex,key)
