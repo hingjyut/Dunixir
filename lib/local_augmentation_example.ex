@@ -34,6 +34,12 @@ defmodule Index.Augmentation do
       end
     end
 
+    def isBeingKicked(local_iindex, key) do
+      # Get the entry waiting to be verified
+      [{key,entry}] = :ets.lookup(local_iindex,key)
+      :ets.insert(local_iindex,{key,Map.merge(entry, %{isBeingKicked: !entry.member})})
+    end
+
   end
 
   defmodule BIndex do
@@ -90,13 +96,24 @@ defmodule Index.Augmentation do
 
   defmodule SIndex do
 
-    def checkUnitBase(local_sindex, :global_bindex, key) do
+    def checkUnitBase(local_sindex, global_bindex, key) do
       # Get the entry waiting to be verified
       [{_key,entry}] = :ets.lookup(local_sindex,key)
       # Get the block number of HEAD in global_bindex
-      [last_block: head_nb] = :dets.lookup(:global_bindex, :last_block)
+      [last_block: head_nb] = :dets.lookup(global_bindex, :last_block)
       # The entry's unitbase is valid only if it isn't bigger than block number of HEAD~1
       entry.base <= head_nb - 1
     end
   end
+
+  defmodule MIndex do
+
+    def isBeingRevoked(local_mindex, key) do
+      # Get the entry waiting to be verified
+      [{key,entry}] = :ets.lookup(local_mindex,key)
+      :ets.insert(local_mindex,{key,Map.merge(entry, %{isBeingRevoked: (Map.has_key?(entry,:revoked_on)&&!is_nil(entry.revoked_on))})})
+    end
+
+  end
+
 end
