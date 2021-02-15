@@ -110,13 +110,13 @@ defmodule WS2P.Cluster do
     end
   end
 
-  def head_verification(
+  defp head_verification(
         all_formed_heads,
         ws2p_cache = %{
           "heads_cache" => heads_cache,
           "member_keys_cache" => member_keys_cache,
           "blockstamp_cache" => blockstamp_cache,
-          "new_heads_cache" => new_heads_cache
+          "new_heads_cache" => new_heads_cache,
         }
       ) do
     if length(all_formed_heads) == 0 do
