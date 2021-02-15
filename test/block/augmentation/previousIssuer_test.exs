@@ -3,11 +3,11 @@ defmodule Block.Augmentation.PreviousIssuer do
 
   doctest Index.Augmentation.BIndex
 
-  setup_all  do
+  setup_all do
     :file.delete("test/local_bindex")
     :file.delete("test/global_bindex")
-    local_bindex = :ets.new(:"test/local_bindex",[:set,:protected])
-    {:ok, global_bindex} = :dets.open_file(:"test/global_bindex", [type: :set])
+    local_bindex = :ets.new(:"test/local_bindex", [:set, :protected])
+    {:ok, global_bindex} = :dets.open_file(:"test/global_bindex", type: :set)
 
     :ets.insert(local_bindex, {1, %{number: -1}})
     Index.Augmentation.BIndex.previousIssuer(global_bindex, local_bindex)
@@ -26,12 +26,10 @@ defmodule Block.Augmentation.PreviousIssuer do
     :file.delete("test/local_bindex")
 
     {:ok, previousIssuer_nok: previousIssuer_nil, previousIssuer_ok: previousIssuer_actual}
-
   end
 
-  test "check previousIssuer",state do
+  test "check previousIssuer", state do
     assert state.previousIssuer_nok == nil
     assert state.previousIssuer_ok == "John Smith"
   end
-
 end

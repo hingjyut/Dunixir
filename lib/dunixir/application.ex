@@ -10,8 +10,12 @@ defmodule Dunixir.Application do
       # Starts a worker by calling: Dunixir.Worker.start_link(arg)
       # {Dunixir.Worker, arg}
       BDD.Create,
-      Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: ServerHttp.Router, options: [port: 8085])
-     ]
+      Plug.Adapters.Cowboy.child_spec(
+        scheme: :http,
+        plug: ServerHttp.Router,
+        options: [port: 8085]
+      )
+    ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

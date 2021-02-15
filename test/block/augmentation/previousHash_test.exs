@@ -3,13 +3,12 @@ defmodule Block.Augmentation.PreviousHash do
 
   doctest Index.Augmentation.BIndex
 
-  setup_all  do
-
-    local_bindex = :ets.new(:local_bindex,[:set,:protected])
+  setup_all do
+    local_bindex = :ets.new(:local_bindex, [:set, :protected])
     :ets.insert(local_bindex, {0, %{number: 0}})
 
     :file.delete("test/global_bindex")
-    {:ok, global_bindex} = :dets.open_file(:"test/global_bindex", [type: :set])
+    {:ok, global_bindex} = :dets.open_file(:"test/global_bindex", type: :set)
 
     Index.Augmentation.BIndex.previousHash(global_bindex, local_bindex)
     [{0, head}] = :ets.lookup(local_bindex, 0)
@@ -26,12 +25,10 @@ defmodule Block.Augmentation.PreviousHash do
     :file.delete("test/global_bindex")
 
     {:ok, previousHash0: previousHash0, previousHash1: previousHash1}
-
   end
 
-  test "check previousHash",state do
+  test "check previousHash", state do
     assert is_nil(state.previousHash0)
     assert state.previousHash1 == "hashTest"
   end
-
 end

@@ -1,5 +1,4 @@
 defmodule Constants do
-
   def version, do: "1.0"
   def forkWindowSize, do: 10
   def sandboxTxSize, do: 200
@@ -11,5 +10,4 @@ defmodule Constants do
   def sigValidity, do: 10
   def sigPeriod, do: 10
   def sigReplay, do: 10
-
 end
