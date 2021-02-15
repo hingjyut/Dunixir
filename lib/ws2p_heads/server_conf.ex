@@ -1,19 +1,3 @@
-# defmodule Server.Conf do
-
-#   def pubkey() do
-#     #TODO: read keypair from .yml file
-#     "BhQf2fkGAe1EszyZRJqasMr23YLSf1P3mhuYzEoKpgVA"
-#   end
-
-#   def seckey() do
-#     "2DLT4zDuuQSsEehijzkwCwdvH4vrsp6joBf4rum9Zb8jDTBKhDfZawSYsGeWy56cPDUGbWf5ybJgADNnVcnJ3sek"
-#   end
-
-#   def ws2p() do
-#     ""
-#   end
-# end
-
 defmodule Server.Conf.Keypair do
 
   use GenServer
