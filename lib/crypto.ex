@@ -104,5 +104,4 @@ defmodule Crypto do
   def verify_digital_signature(signature, message, pubkey) do
     :enacl.sign_verify_detached(Base.decode64!(signature), message, base58_decode(pubkey))
   end
-
 end

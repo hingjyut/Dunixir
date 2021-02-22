@@ -4,11 +4,11 @@ defmodule Block.Validation.Local.TransactionCountTest do
 
   @transaction_with_count_issuers_empty %{
     "version" => 10,
-    "nonce" => 200000000001,
+    "nonce" => 200_000_000_001,
     "number" => 9,
     "powMin" => 0,
-    "time" => 1489679935,
-    "medianTime" => 1489679935,
+    "time" => 1_489_679_935,
+    "medianTime" => 1_489_679_935,
     "membersCount" => 2,
     "monetaryMass" => 4800,
     "unitbase" => 0,
@@ -18,7 +18,8 @@ defmodule Block.Validation.Local.TransactionCountTest do
     "len" => 8,
     "currency" => "duniter_unit_test_currency",
     "issuer" => "DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV",
-    "signature" => "/Fy/99YjcYvSCLWzcEGt55/14slANHNjupxSJ6kpZg3jK4fO6JXvAEshw73FVZ7sKYh+Hj0W840UsUaymVmUCg==",
+    "signature" =>
+      "/Fy/99YjcYvSCLWzcEGt55/14slANHNjupxSJ6kpZg3jK4fO6JXvAEshw73FVZ7sKYh+Hj0W840UsUaymVmUCg==",
     "hash" => "F2F5CC139B9BEF01E639198CB3A1203D5148E75DD072F5BB3D733A206F7C2DD6",
     "parameters" => "",
     "previousHash" => "E457BF313F313D6A852685BE741B1370B8B9C768C76D0F8A8711D7C5195461D2",
@@ -38,26 +39,30 @@ defmodule Block.Validation.Local.TransactionCountTest do
         "blockstamp" => "7-C5B4179C5D65DB6AF1D24CD6859D88C3B4A4A9DAD6A35AF32DA74D877816C0BB",
         "locktime" => 0,
         "issuers" => [],
-        "inputs" => ["1200 =>0 =>T =>E14CB52BD5C9A4B9CA8D3007EABBB5B77E1F58D4598CC44D022AE398E4C8F90D =>0"],
+        "inputs" => [
+          "1200 =>0 =>T =>E14CB52BD5C9A4B9CA8D3007EABBB5B77E1F58D4598CC44D022AE398E4C8F90D =>0"
+        ],
         "unlocks" => ["0 =>XHX(1872767826647264)"],
         "outputs" => ["1200 =>0 =>SIG(DKpQPUL4ckzXYdnDRvCRKAm1gNvSdmAXnTrJZ7LvM5Qo)"],
         "comments" => ["okk"],
-        "signatures" => ["+KUFhYV5wpPbahhRtGcFVfWcjTh/Rl7K68i/ESKmrwf3rnFLpl4atVpzyvmsOsliz5wDjWMiG9wTYMDjRj4XDQ=="],
+        "signatures" => [
+          "+KUFhYV5wpPbahhRtGcFVfWcjTh/Rl7K68i/ESKmrwf3rnFLpl4atVpzyvmsOsliz5wDjWMiG9wTYMDjRj4XDQ=="
+        ],
         "comment" => "okk",
         "currency" => "duniter_unit_test_currency",
         "block_number" => 9,
-        "time" => 1489679935
+        "time" => 1_489_679_935
       }
     ]
   }
 
   @transaction_with_count_equals %{
     "version" => 10,
-    "nonce" => 100000000001,
+    "nonce" => 100_000_000_001,
     "number" => 10,
     "powMin" => 1,
-    "time" => 1489679935,
-    "medianTime" => 1489679935,
+    "time" => 1_489_679_935,
+    "medianTime" => 1_489_679_935,
     "membersCount" => 2,
     "monetaryMass" => 4800,
     "unitbase" => 0,
@@ -67,7 +72,8 @@ defmodule Block.Validation.Local.TransactionCountTest do
     "len" => 7,
     "currency" => "duniter_unit_test_currency",
     "issuer" => "DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV",
-    "signature" => "alJqiw4mWCy2cN8rsVV89J31El8msp2j5zTkFcNTP5M39sLOTwAJaL+orpPcmW28zRRIFpDssiQjys3t+3pHBg==",
+    "signature" =>
+      "alJqiw4mWCy2cN8rsVV89J31El8msp2j5zTkFcNTP5M39sLOTwAJaL+orpPcmW28zRRIFpDssiQjys3t+3pHBg==",
     "hash" => "3524C70AAA67384D9627B0E79D2642DBB0402EF86B6205EC6AFC1EA20C6B5D92",
     "parameters" => "",
     "previousHash" => "F2F5CC139B9BEF01E639198CB3A1203D5148E75DD072F5BB3D733A206F7C2DD6",
@@ -105,17 +111,17 @@ defmodule Block.Validation.Local.TransactionCountTest do
         "comment" => "",
         "currency" => "duniter_unit_test_currency",
         "block_number" => 10,
-        "time" => 1489679935
+        "time" => 1_489_679_935
       }
     ]
   }
   @transaction_with_count_signature_empty %{
     "version" => 10,
-    "nonce" => 200000000001,
+    "nonce" => 200_000_000_001,
     "number" => 11,
     "powMin" => 1,
-    "time" => 1489679935,
-    "medianTime" => 1489679935,
+    "time" => 1_489_679_935,
+    "medianTime" => 1_489_679_935,
     "membersCount" => 2,
     "monetaryMass" => 4800,
     "unitbase" => 0,
@@ -125,7 +131,8 @@ defmodule Block.Validation.Local.TransactionCountTest do
     "len" => 8,
     "currency" => "duniter_unit_test_currency",
     "issuer" => "DNann1Lh55eZMEDXeYt59bzHbA3NJR46DeQYCS2qQdLV",
-    "signature" => "OjWOEdPEpzWKFqxdIcSdk0FUcsXk3vAu9rcmucktgF1L8CdSh09Te4Aek8MCQ8vE7no+EJkL7QR6bv2tI8e/Dw==",
+    "signature" =>
+      "OjWOEdPEpzWKFqxdIcSdk0FUcsXk3vAu9rcmucktgF1L8CdSh09Te4Aek8MCQ8vE7no+EJkL7QR6bv2tI8e/Dw==",
     "hash" => "7F2151494087FA237E1E793EA8C2D015B84A11492CAA282A44DC99DBB1DBAAC8",
     "parameters" => "",
     "previousHash" => "3524C70AAA67384D9627B0E79D2642DBB0402EF86B6205EC6AFC1EA20C6B5D92",
@@ -159,21 +166,19 @@ defmodule Block.Validation.Local.TransactionCountTest do
         "comments" => [
           "cross1"
         ],
-        "signatures" => [
-        ],
+        "signatures" => [],
         "comment" => "cross1",
         "currency" => "duniter_unit_test_currency",
         "block_number" => 11,
-        "time" => 1489679935
+        "time" => 1_489_679_935
       }
     ]
   }
   alias Block.Validation.Local.TransactionCount, as: Count
+
   test "check the number of signature and issuers" do
     assert Count.valid(@transaction_with_count_equals)
     refute Count.valid(@transaction_with_count_issuers_empty)
     refute Count.valid(@transaction_with_count_signature_empty)
   end
-
-
 end
