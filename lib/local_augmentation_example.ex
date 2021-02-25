@@ -146,4 +146,14 @@ defmodule Index.Augmentation do
       )
     end
   end
+
+  defmodule CIndex do
+    def toNewcomer(local_cindex, local_iindex, key) do
+      # Get the entry waiting to be verified
+      [{key, entry}] = :ets.lookup(local_cindex, key)
+      :ets.match(local_iindex,{:"$1",%{member: true, pub: entry.receiver}})
+      |>Enum.count()|>(fn x-> Map.merge(entry,%{toNewcomer: (x != 0) }) end).()
+      |>(&:ets.insert(local_cindex,{key,&1})).()
+    end
+  end
 end
