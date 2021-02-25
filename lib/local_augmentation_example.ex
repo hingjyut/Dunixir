@@ -68,6 +68,23 @@ defmodule Index.Augmentation do
       end
     end
 
+    def issuersFrameVar(global_bindex,local_bindex) do
+      key = :ets.first(local_bindex)
+      [{key, head}] = :ets.lookup(local_bindex, key)
+      if head.number==0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrameVar: 0})})
+      else
+        [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
+        [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
+        variation = head_1.issuersFrameVar + 5*(head.issuersCount - head_1.issuersCount)
+        case head_1.issuersFrameVar do
+          x when x>0 -> variation - 1
+          x when x<0 -> variation + 1
+          0 -> variation
+        end |> (&:ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrameVar: &1})})).()
+      end
+    end
+
     def previousHash(global_bindex, local_bindex) do
       key = :ets.first(local_bindex)
       [{key, head}] = :ets.lookup(local_bindex, key)
