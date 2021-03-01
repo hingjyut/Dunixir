@@ -1,4 +1,4 @@
-defmodule Block.Augmentation.Currency do
+defmodule Block.Augmentation.CurrencyTest do
   use ExUnit.Case
 
   doctest Index.Augmentation.BIndex
