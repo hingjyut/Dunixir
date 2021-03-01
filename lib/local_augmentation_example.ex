@@ -122,8 +122,7 @@ defmodule Index.Augmentation do
     end
 
     def currency(global_bindex, local_bindex) do
-      key = :ets.first(local_bindex)
-      [{key, head}] = :ets.lookup(local_bindex, key)
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
 
       if head.number > 0 do
         [[currency]] =
@@ -133,6 +132,25 @@ defmodule Index.Augmentation do
       else
         :ets.insert(local_bindex, {key, Map.merge(head, %{currency: nil})})
       end
+    end
+
+    ## BR_G12
+    def unitBaseBR_G12(global_bindex, local_bindex) do
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{unitBase: 0})})
+      else
+        [[unitBase]] =
+          :dets.match(global_bindex, {:_, %{number: head.number - 1, unitBase: :"$1"}})
+
+        :ets.insert(local_bindex, {key, Map.merge(head, %{unitBase: unitBase})})
+      end
+    end
+
+    def find_first_local_bindex_entry(local_bindex) do
+      key = :ets.first(local_bindex)
+      :ets.lookup(local_bindex, key)
     end
 
     def membersCount(local_iindex, global_bindex, local_bindex) do
