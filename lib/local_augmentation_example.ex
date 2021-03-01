@@ -134,6 +134,41 @@ defmodule Index.Augmentation do
       end
     end
 
+    ## BR_G11
+    def udTime(global_bindex, local_bindex) do
+      # UD production
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      conf = ConfDTO.mockConfDTO()
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: conf.udTime0})})
+      else
+        [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
+        [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
+        if head_1.udTime <= head.medianTime do
+          :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: head_1.udTime+conf.dt})})
+        else
+          :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: head_1.udTime})})
+        end
+      end
+      udReevalTime(global_bindex, local_bindex)
+    end
+
+    def udReevalTime(global_bindex, local_bindex) do
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      conf = ConfDTO.mockConfDTO()
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{udReevalTime: conf.udReevalTime0})})
+      else
+        [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
+        [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
+        if head_1.udReevalTime <= head.medianTime do
+          :ets.insert(local_bindex, {key, Map.merge(head, %{udReevalTime: head_1.udReevalTime+conf.dtReeval})})
+        else
+          :ets.insert(local_bindex, {key, Map.merge(head, %{udReevalTime: head_1.udReevalTime})})
+        end
+      end
+    end
+
     ## BR_G12
     def unitBaseBR_G12(global_bindex, local_bindex) do
       [{key, head}] = find_first_local_bindex_entry(local_bindex)
