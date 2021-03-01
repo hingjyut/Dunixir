@@ -52,6 +52,38 @@ defmodule Index.Augmentation do
       end
     end
 
+    ## BR_G05
+    def issuersFrame(global_bindex, local_bindex) do
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrame: 1})})
+      else
+        [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
+        [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
+
+        cond do
+          head_1.issuersFrameVar > 0 ->
+            :ets.insert(
+              local_bindex,
+              {key, Map.merge(head, %{issuersFrame: head_1.issuersFrame + 1})}
+            )
+
+          head_1.issuersFrameVar < 0 ->
+            :ets.insert(
+              local_bindex,
+              {key, Map.merge(head, %{issuersFrame: head_1.issuersFrame - 1})}
+            )
+
+          true ->
+            :ets.insert(
+              local_bindex,
+              {key, Map.merge(head, %{issuersFrame: head_1.issuersFrame})}
+            )
+        end
+      end
+    end
+
     ## BR_G06
     def issuersFrameVar(global_bindex, local_bindex) do
       key = :ets.first(local_bindex)
@@ -72,7 +104,6 @@ defmodule Index.Augmentation do
         |> (&:ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrameVar: &1})})).()
       end
     end
-
 
     ## BR_G10
     def membersCount(local_iindex, global_bindex, local_bindex) do
