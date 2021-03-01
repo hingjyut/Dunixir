@@ -10,6 +10,7 @@ defmodule Constants do
   def sigValidity, do: 10
   def sigPeriod, do: 10
   def sigReplay, do: 10
+  def nbDigitsUD, do: 4
 end
 
 defmodule Constants.Contract do

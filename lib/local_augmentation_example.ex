@@ -1,5 +1,6 @@
 defmodule Index.Augmentation do
   defmodule BIndex do
+    def conf, do: ConfDTO.mockConfDTO()
     ## BR_G01
     def number(global_bindex, local_bindex) do
       key = :ets.first(local_bindex)
@@ -125,35 +126,29 @@ defmodule Index.Augmentation do
       end
     end
 
-    ## BR_G11 part 1
+    ## BR_G11
     def udTime(global_bindex, local_bindex) do
       # UD production
       [{key, head}] = find_first_local_bindex_entry(local_bindex)
-      conf = ConfDTO.mockConfDTO()
 
       if head.number == 0 do
-        :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: conf.udTime0})})
+        :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: conf().udTime0})})
       else
         [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
         [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
 
         if head_1.udTime <= head.medianTime do
-          :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: head_1.udTime + conf.dt})})
+          :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: head_1.udTime + conf().dt})})
         else
           :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: head_1.udTime})})
         end
       end
 
-      udReevalTime(global_bindex, local_bindex)
-    end
-
-    ## BR_G11 part 2
-    def udReevalTime(global_bindex, local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
-      conf = ConfDTO.mockConfDTO()
+      # update head
+      [{key, head}] = :ets.lookup(local_bindex, key)
 
       if head.number == 0 do
-        :ets.insert(local_bindex, {key, Map.merge(head, %{udReevalTime: conf.udReevalTime0})})
+        :ets.insert(local_bindex, {key, Map.merge(head, %{udReevalTime: conf().udReevalTime0})})
       else
         [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
         [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
@@ -161,7 +156,7 @@ defmodule Index.Augmentation do
         if head_1.udReevalTime <= head.medianTime do
           :ets.insert(
             local_bindex,
-            {key, Map.merge(head, %{udReevalTime: head_1.udReevalTime + conf.dtReeval})}
+            {key, Map.merge(head, %{udReevalTime: head_1.udReevalTime + conf().dtReeval})}
           )
         else
           :ets.insert(local_bindex, {key, Map.merge(head, %{udReevalTime: head_1.udReevalTime})})
@@ -169,7 +164,7 @@ defmodule Index.Augmentation do
       end
     end
 
-    ## BR_G12 part 1
+    ## BR_G12 
     def unitBaseBR_G12(global_bindex, local_bindex) do
       [{key, head}] = find_first_local_bindex_entry(local_bindex)
 
@@ -180,6 +175,69 @@ defmodule Index.Augmentation do
           :dets.match(global_bindex, {:_, %{number: head.number - 1, unitBase: :"$1"}})
 
         :ets.insert(local_bindex, {key, Map.merge(head, %{unitBase: unitBase})})
+      end
+    end
+
+    ## BR_G13
+    def dividend(global_bindex, local_bindex) do
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      # UD re-evaluation
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{dividend: conf().ud0})})
+      else
+        [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
+        [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
+
+        if head.udReevalTime != head_1.udReevalTime do
+          previousUB = head_1.unitBase
+
+          dividend =
+            Float.ceil(
+              head_1.dividend +
+                :math.pow(conf().c, 2) * Float.ceil(head_1.massReeval / :math.pow(10, previousUB)) /
+                  head.membersCount /
+                  (conf().dtReeval / conf().dt)
+            )
+
+          :ets.insert(local_bindex, {key, Map.merge(head, %{dividend: dividend})})
+        else
+          :ets.insert(local_bindex, {key, Map.merge(head, %{dividend: head_1.dividend})})
+        end
+      end
+
+      [{key, head}] = :ets.lookup(local_bindex, key)
+
+      # UD creation
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{new_dividend: nil})})
+      else
+        [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
+        [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
+
+        if head.udTime != head_1.udTime do
+          :ets.insert(local_bindex, {key, Map.merge(head, %{new_dividend: head.dividend})})
+        else
+          :ets.insert(local_bindex, {key, Map.merge(head, %{new_dividend: nil})})
+        end
+      end
+
+
+    end
+
+    ## BR_G14
+
+    def unitBase(local_bindex) do
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+
+      if head.dividend >= :math.pow(10, Constants.nbDigitsUD()) do
+        :ets.insert(
+          local_bindex,
+          {key, Map.merge(head, %{dividend: Float.ceil(head.dividend / 10)})}
+        )
+
+        [{key, head}] = :ets.lookup(local_bindex, key)
+        :ets.insert(local_bindex, {key, Map.merge(head, %{new_dividend: head.dividend})})
+        :ets.insert(local_bindex, {key, Map.merge(head, %{unitBase: head.unitBase + 1})})
       end
     end
 
@@ -247,7 +305,10 @@ defmodule Index.Augmentation do
             end)
           )
 
-        :ets.insert(local_iindex, {key, Map.merge(entry, %{excludedIsMember: excludedIsMember})})
+        :ets.insert(
+          local_iindex,
+          {key, Map.merge(entry, %{excludedIsMember: excludedIsMember})}
+        )
       end
     end
 

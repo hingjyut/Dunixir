@@ -12,6 +12,7 @@ defmodule Block.Augmentation.Head.UnitBaseTest do
     :file.delete("test/global_bindex")
     {:ok, global_bindex} = :dets.open_file(:"test/global_bindex", type: :set)
 
+    ################## TEST FOR unitBaseBR_G12 #####################
     Index.Augmentation.BIndex.unitBaseBR_G12(global_bindex, local_bindex)
     [{0, head}] = :ets.lookup(local_bindex, 0)
     unit_base0 = head.unitBase
@@ -22,6 +23,11 @@ defmodule Block.Augmentation.Head.UnitBaseTest do
     Index.Augmentation.BIndex.unitBaseBR_G12(global_bindex, local_bindex)
     [{0, head}] = :ets.lookup(local_bindex, 0)
     unit_base1 = head.unitBase
+
+    ################## TEST FOR dividend #####################
+    # :ets.insert(local_bindex, {0, %{number: 0, }})
+    # :dets.insert(global_bindex, {0, %{number: 0, unitBase: 5}})
+
 
     :dets.close(global_bindex)
     :file.delete("test/global_bindex")
