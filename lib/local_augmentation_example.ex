@@ -68,20 +68,23 @@ defmodule Index.Augmentation do
       end
     end
 
-    def issuersFrameVar(global_bindex,local_bindex) do
+    def issuersFrameVar(global_bindex, local_bindex) do
       key = :ets.first(local_bindex)
       [{key, head}] = :ets.lookup(local_bindex, key)
-      if head.number==0 do
+
+      if head.number == 0 do
         :ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrameVar: 0})})
       else
         [[head_1_id]] = :dets.match(global_bindex, {:"$1", %{number: head.number - 1}})
         [{_key_1, head_1}] = :dets.lookup(global_bindex, head_1_id)
-        variation = head_1.issuersFrameVar + 5*(head.issuersCount - head_1.issuersCount)
+        variation = head_1.issuersFrameVar + 5 * (head.issuersCount - head_1.issuersCount)
+
         case head_1.issuersFrameVar do
-          x when x>0 -> variation - 1
-          x when x<0 -> variation + 1
+          x when x > 0 -> variation - 1
+          x when x < 0 -> variation + 1
           0 -> variation
-        end |> (&:ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrameVar: &1})})).()
+        end
+        |> (&:ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrameVar: &1})})).()
       end
     end
 
@@ -115,6 +118,20 @@ defmodule Index.Augmentation do
       else
         # PI is nil
         :ets.insert(local_bindex, {key, Map.merge(head, %{previousIssuer: nil})})
+      end
+    end
+
+    def currency(global_bindex, local_bindex) do
+      key = :ets.first(local_bindex)
+      [{key, head}] = :ets.lookup(local_bindex, key)
+
+      if head.number > 0 do
+        [[currency]] =
+          :dets.match(global_bindex, {:_, %{number: head.number - 1, currency: :"$1"}})
+
+        :ets.insert(local_bindex, {key, Map.merge(head, %{currency: currency})})
+      else
+        :ets.insert(local_bindex, {key, Map.merge(head, %{currency: nil})})
       end
     end
 
@@ -168,9 +185,11 @@ defmodule Index.Augmentation do
     def toNewcomer(local_cindex, local_iindex, key) do
       # Get the entry waiting to be verified
       [{key, entry}] = :ets.lookup(local_cindex, key)
-      :ets.match(local_iindex,{:"$1",%{member: true, pub: entry.receiver}})
-      |>Enum.count()|>(fn x-> Map.merge(entry,%{toNewcomer: (x != 0) }) end).()
-      |>(&:ets.insert(local_cindex,{key,&1})).()
+
+      :ets.match(local_iindex, {:"$1", %{member: true, pub: entry.receiver}})
+      |> Enum.count()
+      |> (fn x -> Map.merge(entry, %{toNewcomer: x != 0}) end).()
+      |> (&:ets.insert(local_cindex, {key, &1})).()
     end
   end
 end
