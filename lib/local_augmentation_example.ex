@@ -53,6 +53,26 @@ defmodule Index.Augmentation do
       end
     end
 
+    ## BR_G04
+    def issuersCount(global_bindex, local_bindex) do
+      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+
+      if head.number == 0 do
+        :ets.insert(local_bindex, {key, Map.merge(head, %{issuersCount: 0})})
+      else
+        [[issuers_frame]] =
+          :dets.match(global_bindex, {:_, %{number: head.number - 1, issuersFrame: :"$1"}})
+
+        bindex_records_in_range = range(1, issuers_frame, global_bindex)
+        uniq_issuers_in_range = Enum.map(bindex_records_in_range, fn x -> x.issuer end) |> Enum.uniq()
+
+        :ets.insert(
+          local_bindex,
+          {key, Map.merge(head, %{issuersCount: Enum.count(uniq_issuers_in_range)})}
+        )
+      end
+    end
+
     ## BR_G05
     def issuersFrame(global_bindex, local_bindex) do
       [{key, head}] = find_first_local_bindex_entry(local_bindex)
@@ -164,7 +184,7 @@ defmodule Index.Augmentation do
       end
     end
 
-    ## BR_G12 
+    ## BR_G12
     def unitBaseBR_G12(global_bindex, local_bindex) do
       [{key, head}] = find_first_local_bindex_entry(local_bindex)
 
@@ -220,8 +240,6 @@ defmodule Index.Augmentation do
           :ets.insert(local_bindex, {key, Map.merge(head, %{new_dividend: nil})})
         end
       end
-
-
     end
 
     ## BR_G14
@@ -252,6 +270,26 @@ defmodule Index.Augmentation do
         :ets.insert(local_bindex, {key, Map.merge(head, %{currency: currency})})
       else
         :ets.insert(local_bindex, {key, Map.merge(head, %{currency: nil})})
+      end
+    end
+
+    #################################################
+    #
+    # Utility functions
+    #
+    #################################################
+    def range(start_number, end_number, global_bindex) do
+      # records are order by number DESC
+      bindexes_records = :dets.match(global_bindex, {:_, :"$1"}) |> List.flatten() |> Enum.sort(&(&1.number > &2.number))
+      end_number = min(end_number, length(bindexes_records))
+
+      # theRange is a list contains bindex's key, its format likes [%{issuer: "a", issuersFrame: 3, number: 2},%{issuer: "b", issuersFrame: 2, number: 1}]
+      if start_number == 1 do
+        Enum.slice(bindexes_records, -end_number..0)
+        # Enum.reverse(the_range)
+      else
+        Enum.slice(bindexes_records, -end_number..(-start_number + 1))
+        # Enum.reverse(the_range)
       end
     end
 
