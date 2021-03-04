@@ -55,7 +55,7 @@ defmodule Index.Augmentation do
 
     ## BR_G04
     def issuersCount(global_bindex, local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
 
       if head.number == 0 do
         :ets.insert(local_bindex, {key, Map.merge(head, %{issuersCount: 0})})
@@ -63,7 +63,7 @@ defmodule Index.Augmentation do
         [[issuers_frame]] =
           :dets.match(global_bindex, {:_, %{number: head.number - 1, issuersFrame: :"$1"}})
 
-        bindex_records_in_range = range(1, issuers_frame, global_bindex)
+        bindex_records_in_range = IndexUtility.range(1, issuers_frame, global_bindex)
         uniq_issuers_in_range = Enum.map(bindex_records_in_range, fn x -> x.issuer end) |> Enum.uniq()
 
         :ets.insert(
@@ -75,7 +75,7 @@ defmodule Index.Augmentation do
 
     ## BR_G05
     def issuersFrame(global_bindex, local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
 
       if head.number == 0 do
         :ets.insert(local_bindex, {key, Map.merge(head, %{issuersFrame: 1})})
@@ -149,7 +149,7 @@ defmodule Index.Augmentation do
     ## BR_G11
     def udTime(global_bindex, local_bindex) do
       # UD production
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
 
       if head.number == 0 do
         :ets.insert(local_bindex, {key, Map.merge(head, %{udTime: conf().udTime0})})
@@ -186,7 +186,7 @@ defmodule Index.Augmentation do
 
     ## BR_G12
     def unitBaseBR_G12(global_bindex, local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
 
       if head.number == 0 do
         :ets.insert(local_bindex, {key, Map.merge(head, %{unitBase: 0})})
@@ -200,7 +200,7 @@ defmodule Index.Augmentation do
 
     ## BR_G13
     def dividend(global_bindex, local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
       # UD re-evaluation
       if head.number == 0 do
         :ets.insert(local_bindex, {key, Map.merge(head, %{dividend: conf().ud0})})
@@ -245,7 +245,7 @@ defmodule Index.Augmentation do
     ## BR_G14
 
     def unitBase(local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
 
       if head.dividend >= :math.pow(10, Constants.nbDigitsUD()) do
         :ets.insert(
@@ -261,7 +261,7 @@ defmodule Index.Augmentation do
 
     ## BR_G99
     def currency(global_bindex, local_bindex) do
-      [{key, head}] = find_first_local_bindex_entry(local_bindex)
+      [{key, head}] =IndexUtility.find_first_local_bindex_entry(local_bindex)
 
       if head.number > 0 do
         [[currency]] =
@@ -272,7 +272,9 @@ defmodule Index.Augmentation do
         :ets.insert(local_bindex, {key, Map.merge(head, %{currency: nil})})
       end
     end
+  end
 
+  defmodule IndexUtility do
     #################################################
     #
     # Utility functions
@@ -296,6 +298,10 @@ defmodule Index.Augmentation do
     def find_first_local_bindex_entry(local_bindex) do
       key = :ets.first(local_bindex)
       :ets.lookup(local_bindex, key)
+    end
+
+    def duniter_reduce(records) do
+      Enum.reduce(records,%{},&Map.merge(&2,&1))
     end
   end
 
