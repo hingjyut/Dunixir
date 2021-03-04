@@ -404,8 +404,8 @@ defmodule Index.Augmentation do
     def fromMember(local_cindex,global_iindex, key) do
         # Get the entry waiting to be verified
         [{key, entry}] = :ets.lookup(local_cindex, key)
-        fromMember_data = :ets.match(global_iindex, {:"$1", %{pub: entry.issuer}})
-        |>Enum.map(&:ets.lookup(global_iindex,&1))
+        fromMember_data = :dets.match(global_iindex, {:"$1", %{pub: entry.issuer}})
+        |>Enum.map(fn [u] -> [{_k,a}]= :dets.lookup(global_iindex,u); a end)
         |>IndexUtility.duniter_reduce()
         |>Map.get(:member)
       :ets.insert(local_cindex, {key, Map.merge(entry, %{fromMember: fromMember_data})})
@@ -414,8 +414,8 @@ defmodule Index.Augmentation do
     def toMember(local_cindex,global_iindex, key) do
       # Get the entry waiting to be verified
       [{key, entry}] = :ets.lookup(local_cindex, key)
-      toMember_data = :ets.match(global_iindex, {:"$1", %{pub: entry.issuer}})
-      |>Enum.map(&:ets.lookup(global_iindex,&1))
+      toMember_data = :dets.match(global_iindex, {:"$1", %{pub: entry.issuer}})
+      |>Enum.map(fn [u] -> [{_k,a}] = :dets.lookup(global_iindex,u);a end)
       |>IndexUtility.duniter_reduce()
       |>Map.get(:member)
     :ets.insert(local_cindex, {key, Map.merge(entry, %{toMember: toMember_data})})
@@ -425,7 +425,7 @@ defmodule Index.Augmentation do
     # Get the entry waiting to be verified
     [{key, entry}] = :ets.lookup(local_cindex, key)
     toLeaver_data = :ets.match(local_mindex, {:"$1", %{pub: entry.receiver}})
-    |>Enum.map(&:ets.lookup(local_mindex,&1))
+    |>Enum.map(fn [u] -> [{_k,a}] = :ets.lookup(local_mindex,u);a end)
     |>IndexUtility.duniter_reduce()
     |>Map.get(:leaving)
   :ets.insert(local_cindex, {key, Map.merge(entry, %{toLeaver: toLeaver_data})})
