@@ -1,4 +1,37 @@
 defmodule Index.Augmentation do
+
+  defmodule IndexUtility do
+    #################################################
+    #
+    # Utility functions
+    #
+    #################################################
+    def range(start_number, end_number, global_bindex) do
+      # records are order by number DESC
+      bindexes_records = :dets.match(global_bindex, {:_, :"$1"}) |> List.flatten() |> Enum.sort(&(&1.number > &2.number))
+      end_number = min(end_number, length(bindexes_records))
+
+      # theRange is a list contains bindex's key, its format likes [%{issuer: "a", issuersFrame: 3, number: 2},%{issuer: "b", issuersFrame: 2, number: 1}]
+      if start_number == 1 do
+        Enum.slice(bindexes_records, -end_number..0)
+        # Enum.reverse(the_range)
+      else
+        Enum.slice(bindexes_records, -end_number..(-start_number + 1))
+        # Enum.reverse(the_range)
+      end
+    end
+
+    def find_first_local_bindex_entry(local_bindex) do
+      key = :ets.first(local_bindex)
+      :ets.lookup(local_bindex, key)
+    end
+
+    def duniter_reduce(records) do
+      Enum.reduce(records,%{},&Map.merge(&2,&1))
+    end
+
+  end
+
   defmodule BIndex do
     def conf, do: ConfDTO.mockConfDTO()
     ## BR_G01
@@ -274,37 +307,6 @@ defmodule Index.Augmentation do
     end
   end
 
-  defmodule IndexUtility do
-    #################################################
-    #
-    # Utility functions
-    #
-    #################################################
-    def range(start_number, end_number, global_bindex) do
-      # records are order by number DESC
-      bindexes_records = :dets.match(global_bindex, {:_, :"$1"}) |> List.flatten() |> Enum.sort(&(&1.number > &2.number))
-      end_number = min(end_number, length(bindexes_records))
-
-      # theRange is a list contains bindex's key, its format likes [%{issuer: "a", issuersFrame: 3, number: 2},%{issuer: "b", issuersFrame: 2, number: 1}]
-      if start_number == 1 do
-        Enum.slice(bindexes_records, -end_number..0)
-        # Enum.reverse(the_range)
-      else
-        Enum.slice(bindexes_records, -end_number..(-start_number + 1))
-        # Enum.reverse(the_range)
-      end
-    end
-
-    def find_first_local_bindex_entry(local_bindex) do
-      key = :ets.first(local_bindex)
-      :ets.lookup(local_bindex, key)
-    end
-
-    def duniter_reduce(records) do
-      Enum.reduce(records,%{},&Map.merge(&2,&1))
-    end
-  end
-
   defmodule IIndex do
     ## BR_G20
     def uidUnique(local_iindex, global_iindex, key) do
@@ -391,7 +393,38 @@ defmodule Index.Augmentation do
       |> (fn x -> Map.merge(entry, %{toNewcomer: x != 0}) end).()
       |> (&:ets.insert(local_cindex, {key, &1})).()
     end
+
+    def fromMember(local_cindex,global_iindex, key) do
+        # Get the entry waiting to be verified
+        [{key, entry}] = :ets.lookup(local_cindex, key)
+        fromMember_data = :ets.match(global_iindex, {:"$1", %{pub: entry.issuer}})
+        |>Enum.map(&:ets.lookup(global_iindex,&1))
+        |>IndexUtility.duniter_reduce()
+        |>Map.get(:member)
+      :ets.insert(local_cindex, {key, Map.merge(entry, %{fromMember: fromMember_data})})
+    end
+
+    def toMember(local_cindex,global_iindex, key) do
+      # Get the entry waiting to be verified
+      [{key, entry}] = :ets.lookup(local_cindex, key)
+      toMember_data = :ets.match(global_iindex, {:"$1", %{pub: entry.issuer}})
+      |>Enum.map(&:ets.lookup(global_iindex,&1))
+      |>IndexUtility.duniter_reduce()
+      |>Map.get(:member)
+    :ets.insert(local_cindex, {key, Map.merge(entry, %{toMember: toMember_data})})
   end
+
+  def toLeaver(local_cindex,local_mindex, key) do
+    # Get the entry waiting to be verified
+    [{key, entry}] = :ets.lookup(local_cindex, key)
+    toLeaver_data = :ets.match(local_mindex, {:"$1", %{pub: entry.receiver}})
+    |>Enum.map(&:ets.lookup(local_mindex,&1))
+    |>IndexUtility.duniter_reduce()
+    |>Map.get(:leaving)
+  :ets.insert(local_cindex, {key, Map.merge(entry, %{toLeaver: toLeaver_data})})
+  end
+
+end
 
   defmodule SIndex do
     def checkUnitBase(local_sindex, global_bindex, key) do
