@@ -27,9 +27,17 @@ defmodule Index.Augmentation do
     end
 
     def duniter_reduce(records) do
-      Enum.reduce(records,%{},&Map.merge(&2,&1))
+      Enum.reduce(l,%{},&Map.merge(&1,&2,fn _k,v1,v2 ->
+        case {v1,v2} do
+          {nil,nil} -> nil
+          {nil,value} -> value
+          {value, nil} -> value
+          {value, _other} -> value
+        end
+      end
+      ))
+      end
     end
-
   end
 
   defmodule BIndex do
