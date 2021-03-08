@@ -35,7 +35,9 @@ defmodule Dunixir.MixProject do
       {:plug_cowboy, "~> 1.0"},
       {:json, "~> 1.4"},
       {:ymlr, "~> 1.0"},
-      {:ex2ms, "~> 1.0"}
+      {:ex2ms, "~> 1.0"},
+      {:elixir_uuid, "~> 1.2"},
+      {:socket, "~> 0.3.13"},
     ]
   end
 end
