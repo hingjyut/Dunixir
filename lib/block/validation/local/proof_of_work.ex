@@ -4,4 +4,3 @@ defmodule Block.Validation.Local.ProofOfWork do
     String.match?(block["hash"], ~r/^0{#{required_zeros}}/)
   end
 end
-
