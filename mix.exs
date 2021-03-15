@@ -36,13 +36,9 @@ defmodule Dunixir.MixProject do
       {:json, "~> 1.4"},
       {:ymlr, "~> 1.0"},
       {:ex2ms, "~> 1.0"},
-<<<<<<< HEAD
       {:jason, "~> 1.2"},
-      {:elixir_uuid, "~> 1.2"}
-=======
       {:elixir_uuid, "~> 1.2"},
-      {:socket, "~> 0.3.13"},
->>>>>>> origin/dev
+      {:socket, "~> 0.3.13"}
     ]
   end
 end

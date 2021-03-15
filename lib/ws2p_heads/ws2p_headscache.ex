@@ -2,7 +2,6 @@ defmodule WS2P.HeadsCache do
   use GenServer
   require Logger
 
-  # Registry.start_link(keys: :unique, name: WS2P.HeadCache.Registry)
   def init(_args) do
     {:ok, %{}}
   end

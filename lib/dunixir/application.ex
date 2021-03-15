@@ -15,6 +15,7 @@ defmodule Dunixir.Application do
       Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: ServerHttp.Router, options: [port: 8085]),
       {Registry, keys: :unique, name: WS2P.Connection.Registry},
       {DynamicSupervisor, strategy: :one_for_one, name: WS2P.ConnectionSupervisor},
+      WS2P.Cluster,
       {Task, fn -> WS2P.Endpoint.accept_connections!(ws2p_port, "/") end}
      ]
 

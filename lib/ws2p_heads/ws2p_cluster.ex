@@ -139,9 +139,12 @@ defmodule WS2P.Cluster do
         IO.puts("passed regex verification")
 
         if (sig_ok and sigV2_ok) or sig_ok do
-          IO.puts("signatures are valid")
+          step = 0
+          if heads_cache[full_id]["step"] != nil do
+            step = heads_cache[full_id]["step"]
+          end
 
-          step = if heads_cache[full_id]["step"] != nil, do: heads_cache[full_id]["step"], else: 0
+          IO.puts("Signatures are valid")
 
           if heads_cache[full_id] == nil or
                Integer.parse(heads_cache[full_id]["blockstamp"]) < Integer.parse(blockstamp) or
@@ -152,7 +155,7 @@ defmodule WS2P.Cluster do
 
             # Check if pubkey exists
             # TODO: searched key in connected key
-            if server_pubkey || is_member_key(member_keys_cache, pubkey) do
+            if (server_pubkey != nil || is_member_key(member_keys_cache, pubkey)) do
               # if current pubkey exists, put it into member keys cache
 
               member_keys_cache = Map.put(member_keys_cache, pubkey, :os.system_time())
@@ -281,10 +284,8 @@ defmodule WS2P.Cluster do
     # check block information, if it's all valid, if block is good, do following
 
     pubkey = block["issuer"]
-    # seckey = GenServer.call(:keypair, :get_seckey)
     seckey = ""
     ws2pid = ""
-    # ws2pid = GenServer.call(:ws2pid, :get_ws2p_id)
     blockstamp = block["number"] <> "-" <> block["hash"]
 
     message =
@@ -313,7 +314,7 @@ defmodule WS2P.Cluster do
       # update headcache
       [heads_cache, member_keys_cache, blockstamp_cache] = ws2p_cache
       heads_cache = Map.put(heads_cache, my_full_id, broadcast_message)
-      ws2p_cache = Map.put(ws2p_cache, "heads_cache", heads_cache)
+      ws2p_cache = Map.put(ws2p_cache, :heads_cache, heads_cache)
       {:ok, broadcast_message, ws2p_cache}
     end
 
