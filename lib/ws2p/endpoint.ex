@@ -24,6 +24,7 @@ defmodule WS2P.Endpoint do
   defp loop(websocket_listener, path) do
     client_socket = Socket.Web.accept!(websocket_listener)
     if client_socket.path == path do
+      Socket.Web.accept!(client_socket)
       start_connection!({:accept, client_socket})
     end
 

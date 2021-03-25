@@ -6,13 +6,14 @@ defmodule Dunixir.Application do
   use Application
 
   def start(_type, _args) do
-    ws2p_port = String.to_integer(System.get_env("PORT") || "20900")
+    ws2p_port = String.to_integer(System.get_env("WS2P_PORT") || "20900")
+    http_port = String.to_integer(System.get_env("HTTP_PORT") || "8085")
 
     children = [
       # Starts a worker by calling: Dunixir.Worker.start_link(arg)
       # {Dunixir.Worker, arg}
       BDD.Create,
-      Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: ServerHttp.Router, options: [port: 8085]),
+      Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: ServerHttp.Router, options: [port: http_port]),
       {Registry, keys: :unique, name: WS2P.Connection.Registry},
       {DynamicSupervisor, strategy: :one_for_one, name: WS2P.ConnectionSupervisor},
       WS2P.Cluster,
