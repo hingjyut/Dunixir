@@ -12,6 +12,8 @@ defmodule Constants do
   def sigReplay, do: 10
   def nbDigitsUD, do: 4
 
+  def powDifficultyRangeRatio, do: 1.189
+
 
 
   def head_v0_regexp, do: "^WS2P:HEAD:(" <> pubkey_regexp() <> "):(" <> block_uid_regexp() <> ")$"
@@ -111,7 +113,7 @@ defmodule Constants do
       "([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|" <>
       "(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$"
   end
-  
+
 end
 
 defmodule Constants.Contract do
