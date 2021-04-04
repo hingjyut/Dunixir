@@ -1,24 +1,8 @@
-
-# ServerHTTP
-Simple HTTP elixir server designed for the BMA (basic Merkle API) of duniter (nswers to some Duniter HTTP requests, testing database manipulations and a beginning of processing distribution).
-
-
-# To start : 
-
-mix deps.get
-iex -S mix
-
-# Send requests
-
-in a shell :
-for a http get method : 
-curl -v "http adress"
-example :
-curl -v "http://localhost:8085/node/summary"
-curl -v "http://localhost:8085/node/sandboxes"
-
-for a http post method :
-curl -v -H 'Content-Type: application/json' "http adress" -d 'json object' 
-example :
-curl -v -H 'Content-Type: application/json' "http://localhost:8085/wot/certify" -d '{"uid": "yourUID","from_pubkey": "yourFromPubkey","pubkey":"yourPubkey" }'
-curl -v -H 'Content-Type: application/json' "http://localhost:8085/wot/add" -d '{"uid": "yourUID","member": false,"pubkey":"yourPubkey" }'
+# Dunixir
+Ce projet est une implémentation en Elixir de [Duniter](https://git.duniter.org/nodes/typescript/duniter). Il est en cours de développement et
+il reste encore [à faire](https://docs.google.com/spreadsheets/d/1NVcuu7IvKFa28_cJSbSyj1h7MA2KX2M-ihVf_rmLrN4)
+# Documentation
+La [documentation](https://gitlab.imt-atlantique.fr/dunixir/dunixir/-/wikis/home) du projet contient des ressources utiles pour
+la suite du développement.
+# License
+This software is distributed under [GNU GPLv3](https://gitlab.imt-atlantique.fr/dunixir/dunixir/-/blob/dev/LICENSE)
